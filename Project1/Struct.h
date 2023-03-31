@@ -1,7 +1,7 @@
 #pragma once
-#include"Console.h"
-#include"Normal.h"
-#include"Utility.h"
+#include <string>
+
+using namespace std;
 
 struct board
 {
@@ -9,7 +9,8 @@ struct board
 	bool empty = true;
 	char c;
 	int w, h;
-}; struct PlayerBoard
+}; 
+struct PlayerBoard
 {
 	string num;
 	string name;

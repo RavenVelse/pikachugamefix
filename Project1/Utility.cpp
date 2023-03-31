@@ -197,8 +197,3 @@ void DrawBox(int x, int y, char c)
     }
     cout << endl;
 }
-
-void deletebox()
-{
-
-}

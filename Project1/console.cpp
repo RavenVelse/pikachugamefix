@@ -42,41 +42,41 @@ void MenuBox(int x, int y, int width, int height, int TextColor, string Text) {
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), TextColor);
     cout << Text;
 }
-void DrawBox(int x, int y, char c)
-{
-    int w = 7;
-    int h = 3;
-    for (int i = 0; i < 2; i++)
-    {
-        if (i == 0)
-        {
-            GoTo(x, y);
-        }
-        else
-        {
-            GoTo(x, y + +1 + h);
-        }
-        for (int j = 0; j < w; j++)
-        {
-            cout << "-"; // ve ngang
-        }
-    }
-    y++;
-    x--;
-    for (int i = 0; i < 3; i++)
-    {
-        GoTo(x, y + i);
-        if (i == 1)
-        {
-            cout << '|' << "   " << c << "   " << '|';
-        }
-        else
-        {
-            cout << '|' << "       " << '|'; // ve canh doc
-        }
-    }
-    cout << endl;
-}
+//void DrawBox(int x, int y, char c)
+//{
+//    int w = 7;
+//    int h = 3;
+//    for (int i = 0; i < 2; i++)
+//    {
+//        if (i == 0)
+//        {
+//            GoTo(x, y);
+//        }
+//        else
+//        {
+//            GoTo(x, y + +1 + h);
+//        }
+//        for (int j = 0; j < w; j++)
+//        {
+//            cout << "-"; // ve ngang
+//        }
+//    }
+//    y++;
+//    x--;
+//    for (int i = 0; i < 3; i++)
+//    {
+//        GoTo(x, y + i);
+//        if (i == 1)
+//        {
+//            cout << '|' << "   " << c << "   " << '|';
+//        }
+//        else
+//        {
+//            cout << '|' << "       " << '|'; // ve canh doc
+//        }
+//    }
+//    cout << endl;
+//}
 
 void deletebox()
 {
