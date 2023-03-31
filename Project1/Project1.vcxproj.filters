@@ -14,4 +14,84 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="console.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Normal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Maincpp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Console.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Struct.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Normal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\pikachugame\Pikachu\pika2.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="..\..\pikachugame\Pikachu\pikachu.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="..\..\pikachugame\Pikachu\pikachu1.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="..\..\pikachugame\Pikachu\PlayerTitle.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="..\..\pikachugame\Pikachu\StageCompleted.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="..\..\pikachugame\Pikachu\titlepokemon.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="..\..\pikachugame\Pikachu\Tutorial.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="..\..\pikachugame\Pikachu\firedragon.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="..\..\pikachugame\Pikachu\GameOver.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="..\..\pikachugame\Pikachu\icon.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="..\..\pikachugame\Pikachu\LeaderBoard.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\..\pikachugame\Pikachu\background.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="..\..\pikachugame\Pikachu\effect.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="..\..\pikachugame\Pikachu\lose.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="..\..\pikachugame\Pikachu\move.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="..\..\pikachugame\Pikachu\win.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+  </ItemGroup>
 </Project>
