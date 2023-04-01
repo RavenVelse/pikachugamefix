@@ -79,6 +79,7 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 		}
 		Highlight(xcurr, ycurr, 8, 4, 15, 11, nd);
 		int ch = _getch();
+		PlaySound(TEXT("move.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		if (ch == 224)
 		{
 			ch = _getch();
