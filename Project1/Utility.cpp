@@ -197,3 +197,25 @@ void DrawBox(int x, int y, char c)
     }
     cout << endl;
 }
+
+void DeleteBox(int x, int y, board** table, int index1, int index2)
+{
+    table[index1][index2].c = ' ';
+    table[index1][index2].empty = true;
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+    int ytemp = y, xtemp = x;
+    for (int i = 0; i < 2; i++)
+    {
+        GoTo(x, ytemp);
+        for (int j = 0; j < 8; j++)
+        {
+            cout << " ";
+        }
+        ytemp += 4;
+    }
+    for (int i = 1; i < 4; i++)
+    {
+        GoTo(x , y + i);
+        cout << "         ";
+    }
+}

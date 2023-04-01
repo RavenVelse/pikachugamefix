@@ -11,7 +11,7 @@ int main() {
     PlaySound(TEXT("background.wav"), NULL, SND_FILENAME | SND_ASYNC);
 
     MainMenu();
-    int size = 4;
+    int size = 6;
     board** table = new board * [size];
     DisplayBoard(table, size);
     int x1 = 0, y1 = 0, x2 = 0, y2 = 0;
