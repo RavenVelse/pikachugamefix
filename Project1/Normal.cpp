@@ -31,7 +31,7 @@ void DisplayBoard(board** table, int size)
 {
 	string str;
 	CreateBoard(table, size, size);
-	int x = 2, y = 2;
+	int x = 10, y = 0;
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11);
 	for (int i = 0; i < size; i++)
 	{
@@ -39,9 +39,9 @@ void DisplayBoard(board** table, int size)
 		for (int j = 0; j < size; j++)
 		{
 			DrawBox(x, y, table[i][j].c);
-			x += 8;
+			x += 9;
 		}
-		y += 4;
+		y += 5;
 	}
 }
 
@@ -83,28 +83,28 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 			case 72:
 				if (index1 != 0)
 				{
-					ycurr -= 4;
+					ycurr -= 5;
 					index1--;
 				}
 				break;
 			case 80:
 				if (index1 != size - 1)
 				{
-					ycurr += 4;
+					ycurr += 5;
 					index1++;
 				}
 				break;
 			case 75:
 				if (index2 != 0)
 				{
-					xcurr -= 8;
+					xcurr -= 9;
 					index2--;
 				}
 				break;
 			case 77:
 				if (index2 != size - 1)
 				{
-					xcurr += 8;
+					xcurr += 9;
 					index2++;
 				}
 				break;
