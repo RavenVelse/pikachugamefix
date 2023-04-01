@@ -131,7 +131,7 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 			{
 				b1 = index1;
 				b2 = index2;
-				if (table[a1][a2].c == table[b1][b2].c) // neu 2 o chon co cung gia tri thi se tra ve dia chi a1 a2 va b1 b2
+				if (table[a1][a2].c == table[b1][b2].c && CheckPointer( table, a1, a2, b1, b2, size)) // neu 2 o chon co cung gia tri thi se tra ve dia chi a1 a2 va b1 b2
 				{
 					DeleteBox(temp1, temp2, table, a1, a2);
 					DeleteBox(xcurr, ycurr, table, b1, b2);
