@@ -31,7 +31,7 @@ void DisplayBoard(board** table, int size)
 {
 	string str;
 	CreateBoard(table, size, size);
-	int x = 2, y = 2;
+	int x = 10, y = 0;
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11);
 	for (int i = 0; i < size; i++)
 	{
@@ -39,9 +39,9 @@ void DisplayBoard(board** table, int size)
 		for (int j = 0; j < size; j++)
 		{
 			DrawBox(x, y, table[i][j].c);
-			x += 8;
+			x += 9;
 		}
-		y += 4;
+		y += 5;
 	}
 }
 
@@ -72,8 +72,14 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 			string nd1 = string(1, table[a1][a2].c);
 			Highlight(temp1, temp2, 8, 4, 15, 11, nd1); // to mau` o enter
 		}
+		else if(!enter)
+		{
+			string nd1 = string(1, table[a1][a2].c);
+			Highlight(temp1, temp2, 8, 4, 16, 11, nd1);
+		}
 		Highlight(xcurr, ycurr, 8, 4, 15, 11, nd);
 		int ch = _getch();
+		PlaySound(TEXT("move.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		if (ch == 224)
 		{
 			ch = _getch();
@@ -81,30 +87,30 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 			{
 				//72:up, 80:down, 77:right, 75:left
 			case 72:
-				if (index1 != 0)
+				if (index1 != 0 )
 				{
-					ycurr -= 4;
+					ycurr -= 5;
 					index1--;
 				}
 				break;
 			case 80:
-				if (index1 != size - 1)
+				if (index1 != size - 1 )
 				{
-					ycurr += 4;
+					ycurr += 5;
 					index1++;
 				}
 				break;
 			case 75:
-				if (index2 != 0)
+				if (index2 != 0 )
 				{
-					xcurr -= 8;
+					xcurr -= 9;
 					index2--;
 				}
 				break;
 			case 77:
-				if (index2 != size - 1)
+				if (index2 != size - 1 )
 				{
-					xcurr += 8;
+					xcurr += 9;
 					index2++;
 				}
 				break;
@@ -119,6 +125,7 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 				a1 = index1;
 				a2 = index2;
 				temp1 = xcurr, temp2 = ycurr;
+				enter = true;
 			}
 			else if (timesenter == 2)
 			{
@@ -126,11 +133,13 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 				b2 = index2;
 				if (table[a1][a2].c == table[b1][b2].c) // neu 2 o chon co cung gia tri thi se tra ve dia chi a1 a2 va b1 b2
 				{
-					loop = false;
+					DeleteBox(temp1, temp2, table, a1, a2);
+					DeleteBox(xcurr, ycurr, table, b1, b2);
 				}
-				timesenter--;
+				timesenter = 0;
+				enter = false;
 			}
-			enter = true;
+			
 		}
 		else
 		{
