@@ -72,6 +72,11 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 			string nd1 = string(1, table[a1][a2].c);
 			Highlight(temp1, temp2, 8, 4, 15, 11, nd1); // to mau` o enter
 		}
+		else if(!enter)
+		{
+			string nd1 = string(1, table[a1][a2].c);
+			Highlight(temp1, temp2, 8, 4, 16, 11, nd1);
+		}
 		Highlight(xcurr, ycurr, 8, 4, 15, 11, nd);
 		int ch = _getch();
 		if (ch == 224)
