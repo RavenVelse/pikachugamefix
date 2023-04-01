@@ -116,7 +116,7 @@ void Highlight(int x, int y, int width, int height, int BackColor, int TextColor
         }
     }
     int temp1 = GotoCentral(width, Text);
-    GoTo(x + temp1, y + height / 2);
+    GoTo(x + temp1 + 1, y + height / 2);
     cout << Text;
 }
 //Read and then draw on the console screen
