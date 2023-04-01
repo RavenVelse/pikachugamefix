@@ -81,28 +81,28 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 			{
 				//72:up, 80:down, 77:right, 75:left
 			case 72:
-				if (index1 != 0 && (table[index1 - 1][index2].empty == false))
+				if (index1 != 0 )
 				{
 					ycurr -= 5;
 					index1--;
 				}
 				break;
 			case 80:
-				if (index1 != size - 1 && (table[index1 + 1][index2].empty == false))
+				if (index1 != size - 1 )
 				{
 					ycurr += 5;
 					index1++;
 				}
 				break;
 			case 75:
-				if (index2 != 0 && (table[index1][index2 - 1].empty == false))
+				if (index2 != 0 )
 				{
 					xcurr -= 9;
 					index2--;
 				}
 				break;
 			case 77:
-				if (index2 != size - 1 && (table[index1][index2 + 1].empty == false))
+				if (index2 != size - 1 )
 				{
 					xcurr += 9;
 					index2++;
@@ -119,6 +119,7 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 				a1 = index1;
 				a2 = index2;
 				temp1 = xcurr, temp2 = ycurr;
+				enter = true;
 			}
 			else if (timesenter == 2)
 			{
@@ -126,11 +127,14 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 				b2 = index2;
 				if (table[a1][a2].c == table[b1][b2].c) // neu 2 o chon co cung gia tri thi se tra ve dia chi a1 a2 va b1 b2
 				{
-					loop = false;
+					DeleteBox(temp1, temp2, table, a1, a2);
+					DeleteBox(xcurr, ycurr, table, b1, b2);
+					timesenter = 1;
 				}
 				timesenter--;
+				enter = false;
 			}
-			enter = true;
+			
 		}
 		else
 		{

@@ -215,7 +215,7 @@ void DeleteBox(int x, int y, board** table, int index1, int index2)
     }
     for (int i = 1; i < 4; i++)
     {
-        GoTo(x - 1, y + i);
-        cout << "          ";
+        GoTo(x , y + i);
+        cout << "         ";
     }
 }
