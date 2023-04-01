@@ -145,12 +145,12 @@
     <Text Include="..\..\pikachugame\Pikachu\icon.txt" />
     <Text Include="..\..\pikachugame\Pikachu\LeaderBoard.txt" />
     <Text Include="..\..\pikachugame\Pikachu\pika2.txt" />
-    <Text Include="..\..\pikachugame\Pikachu\pikachu.txt" />
     <Text Include="..\..\pikachugame\Pikachu\pikachu1.txt" />
     <Text Include="..\..\pikachugame\Pikachu\PlayerTitle.txt" />
     <Text Include="..\..\pikachugame\Pikachu\StageCompleted.txt" />
     <Text Include="..\..\pikachugame\Pikachu\titlepokemon.txt" />
     <Text Include="..\..\pikachugame\Pikachu\Tutorial.txt" />
+    <Text Include="Pikachu3.txt" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="..\..\pikachugame\Pikachu\background.wav" />

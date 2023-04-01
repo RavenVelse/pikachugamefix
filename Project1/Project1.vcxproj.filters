@@ -58,9 +58,6 @@
     <Text Include="..\..\pikachugame\Pikachu\pika2.txt">
       <Filter>Source Files</Filter>
     </Text>
-    <Text Include="..\..\pikachugame\Pikachu\pikachu.txt">
-      <Filter>Source Files</Filter>
-    </Text>
     <Text Include="..\..\pikachugame\Pikachu\pikachu1.txt">
       <Filter>Source Files</Filter>
     </Text>
@@ -74,6 +71,9 @@
       <Filter>Source Files</Filter>
     </Text>
     <Text Include="..\..\pikachugame\Pikachu\Tutorial.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="Pikachu3.txt">
       <Filter>Source Files</Filter>
     </Text>
   </ItemGroup>

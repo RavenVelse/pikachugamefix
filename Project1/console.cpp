@@ -137,7 +137,7 @@ void PlayMenu(string s,string date) {
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);
             ReadAndDraw("pikachu1.txt", 12, 76, 18);
             ReadAndDraw("titlepokemon.txt", 13, 25, 0);
-            ReadAndDraw("pikachu.txt", 14, 1, 16);
+            ReadAndDraw("Pikachu3.txt", 14, 1, 16);
             int xp = x, yp = y;
             int xcu = xp, ycu = yp;
             bool loop = true;
@@ -167,11 +167,12 @@ void PlayMenu(string s,string date) {
                     break;
                 }
                 Highlight(xp + 1, yp, 28, 2, 15, 11, nd);// Hightlight the chosen box
-                int ch = _getch();
+                int ch = _getch();          
                 // 224: arrow buttons
                 if (ch == 224)
                 {
                     ch = _getch();
+                    PlaySound(TEXT("move.wav"), NULL, SND_FILENAME | SND_ASYNC);
                     switch (ch)
                     {
                         //72:up, 80:down, 77:right, 75:left
