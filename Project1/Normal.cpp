@@ -81,28 +81,28 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 			{
 				//72:up, 80:down, 77:right, 75:left
 			case 72:
-				if (index1 != 0)
+				if (index1 != 0 && (table[index1 - 1][index2].empty == false))
 				{
 					ycurr -= 5;
 					index1--;
 				}
 				break;
 			case 80:
-				if (index1 != size - 1)
+				if (index1 != size - 1 && (table[index1 + 1][index2].empty == false))
 				{
 					ycurr += 5;
 					index1++;
 				}
 				break;
 			case 75:
-				if (index2 != 0)
+				if (index2 != 0 && (table[index1][index2 - 1].empty == false))
 				{
 					xcurr -= 9;
 					index2--;
 				}
 				break;
 			case 77:
-				if (index2 != size - 1)
+				if (index2 != size - 1 && (table[index1][index2 + 1].empty == false))
 				{
 					xcurr += 9;
 					index2++;
