@@ -129,9 +129,8 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 				{
 					DeleteBox(temp1, temp2, table, a1, a2);
 					DeleteBox(xcurr, ycurr, table, b1, b2);
-					timesenter = 1;
 				}
-				timesenter--;
+				timesenter = 0;
 				enter = false;
 			}
 			

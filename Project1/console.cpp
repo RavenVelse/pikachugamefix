@@ -109,7 +109,7 @@ void PlayMenu(string s,string date) {
             switch (ycu)
             {
 
-            case 15: nd = "Play"; break;
+            case 15: nd = "PLAY"; break;
             case 17: nd = "LEADERBOARD"; break;
             case 19: nd = "EXIT"; break;
             default:
@@ -121,7 +121,7 @@ void PlayMenu(string s,string date) {
 
             switch (yp)
             {
-            case 15: nd = "Play"; break;
+            case 15: nd = "PLAY"; break;
             case 17: nd = "LEADERBOARD"; break;
             case 19: nd = "EXIT"; break;
             default:
@@ -251,8 +251,8 @@ void PlayMenu(string s,string date) {
         GoTo(50, 10);
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
         cout << "Choose the Difficulty";
-        MenuBox(x, y + (0 * 2), 30, 2, 15, "Normal");
-        MenuBox(x, y + (1 * 2), 30, 2, 15, "Hard");
+        MenuBox(x, y + (0 * 2), 30, 2, 15, "NORMAL");
+        MenuBox(x, y + (1 * 2), 30, 2, 15, "HARD");
         for (int i = 1; i < 2; i++) {
             GoTo(x, y + (i * 2));
             cout << char(195);
