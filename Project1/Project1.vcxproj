@@ -128,12 +128,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="checkpointer.cpp" />
     <ClCompile Include="console.cpp" />
     <ClCompile Include="Maincpp.cpp" />
     <ClCompile Include="Normal.cpp" />
     <ClCompile Include="Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="checkpointer.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="Normal.h" />
     <ClInclude Include="Struct.h" />
