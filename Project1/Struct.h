@@ -17,3 +17,8 @@ struct PlayerBoard
 	string date;
 	string score;
 };
+struct Hour {
+	int hour;
+	int minute;
+	int second;
+};

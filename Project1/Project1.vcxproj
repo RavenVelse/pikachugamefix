@@ -131,6 +131,7 @@
     <ClCompile Include="console.cpp" />
     <ClCompile Include="Maincpp.cpp" />
     <ClCompile Include="Normal.cpp" />
+    <ClCompile Include="Time.cpp" />
     <ClCompile Include="Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
