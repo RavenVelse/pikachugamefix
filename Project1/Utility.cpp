@@ -219,3 +219,50 @@ void DeleteBox(int x, int y, board** table, int index1, int index2)
         cout << "         ";
     }
 }
+
+void DrawStatusBoard()
+{
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+    GoTo(84, 1);
+    cout << "STATUS BOARD";
+    GoTo(71, 2);
+    cout << "- Player name: ";
+    GoTo(71, 3);
+    cout << "- Points: ";
+    GoTo(71, 4);// dia chi thoi gian
+    cout << "- Time left: ";
+    GoTo(71, 5);
+    cout << "- Char match: ";
+    GoTo(71, 6);
+    cout << "- Matching style: ";
+    GoTo(80, 13);
+    cout << "RULES AND KEYS CONTROL";
+    GoTo(71, 14);
+    cout << "- Each match will give you 100 points";
+    GoTo(71, 15);
+    cout << "- Using help will cost you 200 points";
+    GoTo(71, 16);
+    cout << "- For each minutes that you have left";
+    GoTo(71, 17);
+    cout << "will give you minutes * 100 points";
+    GoTo(71, 18);
+    cout << "- Press arrow keys to move, enter to ";
+    GoTo(71, 19);
+    cout << "choose and H to receive help";
+    for (int i = 0; i <= 40; i++)
+    {
+        GoTo(70 + i, 0);
+        cout << "-";
+        GoTo(70 + i, 12);
+        cout << "-";
+        GoTo(70 + i, 20);
+        cout << "-";
+    }
+    for (int i = 1; i < 20; i++)
+    {
+        GoTo(70, i);
+        cout << "|";
+        GoTo(110, i);
+        cout << "|";
+    }
+}
