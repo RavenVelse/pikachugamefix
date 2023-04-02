@@ -18,3 +18,4 @@ void ReadAndDraw(string filename, int line, int x, int y);
 void ReadFile(string filename, PlayerBoard PB[MAXLB], int& NumPlayer);
 void SaveFile(string filename, PlayerBoard PB[MAXLB], int NumPlayer);
 void DeleteBox(int x, int y, board** table, int index1, int index2);
+void DrawStatusBoard();

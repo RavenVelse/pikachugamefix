@@ -43,6 +43,7 @@ void DisplayBoard(board** table, int size)
 		}
 		y += 5;
 	}
+	DrawStatusBoard();
 }
 
 //Ham cho nguoi dung nhap mui ten va enter de chon o
