@@ -13,6 +13,8 @@ void GoTo(SHORT posX, SHORT posY)
 
     SetConsoleCursorPosition(hStdout, Position);
 }
+// tutorial: https://www.youtube.com/watch?v=hbiu9e5ZbuQ
+// Change from integer to char
 char inToA(int k) {
     switch (k)
     {
@@ -30,7 +32,7 @@ char inToA(int k) {
         break;
     }
 }
-
+// Insert data of time to the array
 void insertarray(char* h, Hour* j) {
     int bait = 0;
     bait = j->second;
@@ -47,6 +49,7 @@ void insertarray(char* h, Hour* j) {
 
 }
 
+// Change time display
 bool changetime(Hour* h) {
     if (h->second > 0) --h->second;
     else if (h->minute > 0) {
@@ -63,7 +66,7 @@ bool changetime(Hour* h) {
     return 1;
 }
 
-//dung de in ra mot chuoi thay the ham cout
+// Replace cout to print the clock 
 void WriteBlockChar(char* Arraych, int row, int col, int x, int y, int color)
 {
     CHAR_INFO* charater = new CHAR_INFO[row * col];
@@ -77,7 +80,7 @@ void WriteBlockChar(char* Arraych, int row, int col, int x, int y, int color)
     WriteConsoleOutput(GetStdHandle(STD_OUTPUT_HANDLE), charater, sizebuff, pos, &earea);
     delete[] charater;
 }
-
+// Print clock
 void printClock() {
     Hour h = { 0,0,5 };
     char a[8] = { '0','0',':','0','0',':','0','0' };
@@ -90,6 +93,7 @@ void printClock() {
     }
     return;
 }
+// end when time is over
 void close(DWORD evt) {
     if (evt == CTRL_CLOSE_EVENT) stoptime = 0;
 }
