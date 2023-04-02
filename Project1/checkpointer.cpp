@@ -1,24 +1,5 @@
 #include "checkpointer.h"
 
-bool NextToCheck(board** table, int x1, int y1, int x2, int y2)
-{
-	if (x1 == x2)
-	{
-		if ((y1 - y2) == 1 || (y1 - y2) == -1)
-		{
-			return true;
-		}
-	}
-	else if (y1 == y2)
-	{
-		if ((x1 - x2) == -1 || (x1 - x2) == 1)
-		{
-			return true;
-		}
-	}
-	return false;
-}
-
 bool ICheck(board** table, int x1, int y1, int x2, int y2)
 {
 	int min = 0, max = 0;
