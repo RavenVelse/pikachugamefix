@@ -133,7 +133,68 @@ bool UCheck(board** table, int x1, int y1, int x2, int y2, int size)
 	}
 	return false;
 }
-
+bool LCheck(board** table, int x1, int y1, int x2, int y2) {
+	bool check1 = false;
+	bool check2 = false;
+	if (table[x1][y2].empty == false && table[x2][y1].empty == false) {
+		return 0;
+	}
+	if (table[x1][y2].empty == true) {
+		check1 = ICheck(table, x1, y1, x1, y2);
+		check2 = ICheck(table, x1, y2, x2, y2);
+		if (check1 == true && check2 == true) {
+			return true;
+		}
+	}
+	if (table[x2][y1].empty == true) {
+		check1 = ICheck(table, x1, y1, x2, y1);
+		check2 = ICheck(table, x2, y1, x2, y2);
+		if (check1 == true && check2 == false) {
+			return true;
+		}
+	}
+	return false;
+}
+bool ZCheck(board**table, int x1, int x2, int y1, int y2) {
+	bool check1 = false;
+	bool check2 = false;
+	bool check3 = false;
+	if (x1 < x2) { // Set the upper box is the left
+		x1 = x1;
+		x2 = x2;
+	}
+	else if(x2 < x1){
+		swap(x1, x2);
+	}
+	for (int i = x1 + 1; i < x2; i++) { 
+		check1 = ICheck(table, x1, y1, i, y1);
+		if (check1) {
+			check2 = ICheck(table, i, y1, i, y2);
+			check3 = ICheck(table, i, y2, x2, y2);
+			if (check2 && check3) {
+				return true;
+			}
+		}
+	}
+	if (y1 < y2) { // Set the upper box is the top 
+		y1 = y1;
+		y2 = y2;
+	}
+	else if( y2 < y1){
+		swap(y1, y2);
+	}
+	for (int i = y1 + 1; i < y2; i++) {
+		check1 = ICheck(table, x1, y1, x1, i);
+		if (check1) {
+			check2 = ICheck(table, x1, i, x2, i);
+			check3 = ICheck(table, x1, i, x2, y2);
+			if (check2 && check3) {
+				return true;
+			}
+		}
+	}
+	return false;
+}
 bool CheckPointer(board** table, int x1, int y1, int x2, int y2, int size)
 {
 	//if (NextToCheck(table,x1,y1,x2,y2) == true)
@@ -149,11 +210,19 @@ bool CheckPointer(board** table, int x1, int y1, int x2, int y2, int size)
 		cout << " I match";
 		return true;
 	}
-
+	if (LCheck(table, x1, y1, x2, y2)) {
+		GoTo(70, 0);
+		cout << "L match";
+		return true;
+	}
+	if (ZCheck(table, x1, y1, x2, y2)) {
+		GoTo(70, 0);
+		cout << "Z match";
+		return true;
+	}
 	if (UCheck(table, x1, y1, x2, y2, size)) {
 		GoTo(70, 0);
 		cout << "U match";
 		return true;
 	}
-
 }
