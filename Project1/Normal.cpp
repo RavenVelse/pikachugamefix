@@ -1,4 +1,5 @@
 #include"Normal.h"
+#include<thread>
 
 void CreateBoard(board** table, int w, int h)
 {
@@ -28,7 +29,8 @@ void CreateBoard(board** table, int w, int h)
 }
 
 void DisplayBoard(board** table, int size)
-{
+{	
+	
 	string str;
 	CreateBoard(table, size, size);
 	int x = 10, y = 0;
@@ -148,4 +150,25 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 				loop = false;
 		}
 	}
+}
+void NormalMap(int size) {
+	SetConsoleCtrlHandler((PHANDLER_ROUTINE)close, TRUE);
+	Hour h{ 0,0,5 };
+	bool stoptime = 1;
+	size = 6;
+	board** table = new board * [size];
+	DisplayBoard(table, size);
+	int x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+	thread clock;
+	while (stoptime) {
+		clock = thread(printClock);
+		PlayerInput(table, size, 2, 0, x1, y1, x2, y2);
+		stoptime = 0; 
+		if (h.hour == 0 && h.minute == 0 && h.second == 0) {
+			GameOver(0);
+			break;
+		}
+		clock.detach();
+	}
+	return;
 }

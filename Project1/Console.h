@@ -1,5 +1,6 @@
 #pragma once
 #include<Windows.h>
+#include<chrono>
 #include<iostream>
 #include<conio.h>
 #include<iomanip>
@@ -10,6 +11,7 @@
 #include"Utility.h"
 #include <time.h>
 #include<mmsystem.h>
+#include"Normal.h"
 
 using namespace std;
 #define MAXLB 100
@@ -20,3 +22,4 @@ void LeaderBoard(PlayerBoard PB[MAXLB], int NumPlayer);
 void MainMenu();
 void DifficultScreen();
 void NameScreen(string name, string date);
+void GameOver(bool result);

@@ -155,7 +155,7 @@ bool LCheck(board** table, int x1, int y1, int x2, int y2) {
 	}
 	return false;
 }
-bool ZCheck(board**table, int x1, int x2, int y1, int y2) {
+bool ZCheck(board**table, int x1, int y1, int x2, int y2) {
 	bool check1 = false;
 	bool check2 = false;
 	bool check3 = false;
@@ -167,7 +167,7 @@ bool ZCheck(board**table, int x1, int x2, int y1, int y2) {
 		swap(x1, x2);
 	}
 	for (int i = x1 + 1; i < x2; i++) { 
-		check1 = ICheck(table, x1, y1, i, y1);
+		check1 = ICheck(table, i, y1, i, y1);
 		if (check1) {
 			check2 = ICheck(table, i, y1, i, y2);
 			check3 = ICheck(table, i, y2, x2, y2);
@@ -184,7 +184,7 @@ bool ZCheck(board**table, int x1, int x2, int y1, int y2) {
 		swap(y1, y2);
 	}
 	for (int i = y1 + 1; i < y2; i++) {
-		check1 = ICheck(table, x1, y1, x1, i);
+		check1 = ICheck(table, x1, i, x1, i);
 		if (check1) {
 			check2 = ICheck(table, x1, i, x2, i);
 			check3 = ICheck(table, x1, i, x2, y2);
