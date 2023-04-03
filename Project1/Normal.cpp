@@ -138,12 +138,23 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 					{
 						DeleteBox(temp1, temp2, table, a1, a2);
 						DeleteBox(xcurr, ycurr, table, b1, b2);
+						loop = ValidPairLeft(table, size,ch);
+						GoTo(70, 25);
+						if (!loop)
+						{
+							cout << "No valid pairs left";
+							_getch();
+						}
 					}
 				}
 				timesenter = 0;
 				enter = false;
 			}
 			
+		}
+		else if (char(ch) == 'h')
+		{
+			ValidPairLeft(table, size, ch);
 		}
 		else
 		{

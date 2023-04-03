@@ -181,8 +181,6 @@ bool ZCheck(board**table, int x1, int y1, int x2, int y2)
 			check2 = ICheck(table, x1, y1, i, y1);
 			check3 = ICheck(table, x2, y2, i, y2);
 			if (check2 && check3) {
-				GoTo(70, 25);
-				cout << "check z 1";
 				return true;
 			}
 		}
@@ -205,7 +203,6 @@ bool ZCheck(board**table, int x1, int y1, int x2, int y2)
 			check3 = ICheck(table, x1, i, x2, i);
 			if (check2 && check3) {
 				GoTo(70, 25);
-				cout << "check z 1";
 				return true;
 			}
 		}
@@ -250,7 +247,29 @@ bool CheckPointer(board** table, int x1, int y1, int x2, int y2, int size)
 	return false;
 }
 
-bool ValidPairLeft(board** table, int size)
+bool CheckPointerNoCout(board** table, int x1, int y1, int x2, int y2, int size)
+{
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+	if (ICheck(table, x1, y1, x2, y2))
+	{
+		return true;
+	}
+	if (LCheck(table, x1, y1, x2, y2))
+	{
+		return true;
+	}
+	if (ZCheck(table, x1, y1, x2, y2))
+	{
+		return true;
+	}
+	if (UCheck(table, x1, y1, x2, y2, size))
+	{
+		return true;
+	}
+	return false;
+}
+
+bool ValidPairLeft(board** table, int size,int c)
 {
 	int l = 0, k = 0;
 	while (l < size)
@@ -259,11 +278,18 @@ bool ValidPairLeft(board** table, int size)
 		{
 			for (int j = 0; j < size; j++)
 			{
-				if (CheckPointer(table, l, k, i, j, size))
+				if ( l != i || k != j )
 				{
-					return true;
+					if (CheckPointerNoCout(table, l, k, i, j, size) == true && table[l][k].empty == false && table[i][j].c == table[l][k].c)
+					{
+						if (char(c) == 'h')
+						{
+							GoTo(79, 7);
+							cout << "cell(" << l << ", " << k << ") and cell(" << i << ", " << j << ")";
+						}
+						return true;
+					}
 				}
-
 			}
 		}
 		if (k < size -1)

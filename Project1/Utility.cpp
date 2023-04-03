@@ -235,6 +235,8 @@ void DrawStatusBoard()
     cout << "- Char match: ";
     GoTo(71, 6);
     cout << "- Matching style: ";
+    GoTo(71, 7);
+    cout << "- Help: ";
     GoTo(80, 13);
     cout << "RULES AND KEYS CONTROL";
     GoTo(71, 14);
