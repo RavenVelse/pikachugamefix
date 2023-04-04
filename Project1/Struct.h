@@ -12,8 +12,8 @@ struct board
 }; 
 struct PlayerBoard
 {
-	string num;
-	string name;
-	string date;
-	string score;
+	unsigned short num;
+	char name[40];
+	char date[11];
+	double score;
 };

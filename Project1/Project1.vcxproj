@@ -153,6 +153,7 @@
     <Text Include="..\..\pikachugame\Pikachu\titlepokemon.txt" />
     <Text Include="..\..\pikachugame\Pikachu\Tutorial.txt" />
     <Text Include="Pikachu3.txt" />
+    <Text Include="Text.txt" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="..\..\pikachugame\Pikachu\background.wav" />

@@ -137,31 +137,76 @@ void ReadAndDraw(string filename, int line, int x, int y)
         y++;
     }
 }
-// Read player file
+void SaveFileBi(string filename, PlayerBoard* PB, int NumPlayer) {
+    ofstream fout;
+    fout.open(filename, ios::binary | ios :: out);
+    if (!fout.good()) {
+        return;
+    }
+    for (int i = 0; i < 10; i++) {
+        fout.write((char*) & PB[i], sizeof(PlayerBoard));
+    }
+    fout.close();
+}
+void ReadBiandPrint(string filename, PlayerBoard* PB, int &NumPlayer) {
+    int x = 1;
+    int y = 8;
+    ifstream fin;
+    fin.open(filename, ios::binary | ios::in);
+    fin.seekg(0, ios::end);
+    int num = fin.tellg() / sizeof(PlayerBoard);
+    fin.seekg(0, ios::beg);
+    NumPlayer = num;
+    PlayerBoard* player = new PlayerBoard[num];
+    for (int i = 0; i < num; i++) {
+        fin.read((char*)&player[i], sizeof(PlayerBoard));
+    }
+    for (int i = 0; i < 10; i++) {
+        if(i == 0) {
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);
+        }if (i == 1) {
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+        }if (i == 2) {
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8);
+        }
+        GoTo(x, y);
+        cout << PB[i].num;
+        GoTo(x + 5, y);
+        cout << PB[i].name;
+        GoTo(x + 90, y);
+        cout << PB[i].date;
+        GoTo(x + 110, y);
+        cout << PB[i].score;
+        y += 2;
+    }
+    delete[] player;
+    fin.close();
+}
 void ReadFile(string filename, PlayerBoard PB[MAXLB], int& NumPlayer) {
     NumPlayer = 1;
     int i = 0;
     ifstream fin;
     fin.open(filename);
     while (!fin.eof()) {
-        getline(fin, PB[i].num, '.');
-        getline(fin, PB[i].name, '.');
-        getline(fin, PB[i].date, '.');
-        getline(fin, PB[i].score);
+        fin >> PB[i].num;
+        fin >> PB[i].name;
+        fin >> PB[i].date;
+        fin >> PB[i].score;
         i++;
         NumPlayer++;
     }
     fin.close();
+    cout << "ok";
 }
-// Save player file after 
-void SaveFile(string filename, PlayerBoard PB[MAXLB], int NumPlayer) {
-    ofstream fout;
-    fout.open(filename);
-    for (int i = 0; i < NumPlayer; i++) {
-        fout << PB[i].num << "." << PB[i].name << "." << PB[i].date << "." << PB[i].score << endl;
-    }
-    fout.close();
-}
+//// Save player file after 
+//void SaveFile(string filename, PlayerBoard PB[MAXLB], int NumPlayer) {
+//    ofstream fout;
+//    fout.open(filename);
+//    for (int i = 0; i < NumPlayer; i++) {
+//        fout << PB[i].num << "." << PB[i].name << "." << PB[i].date << "." << PB[i].score << endl;
+//    }
+//    fout.close();
+//}
 void DrawBox(int x, int y, char c)
 {
     int w = 7;
