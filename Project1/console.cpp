@@ -51,8 +51,6 @@ void MainMenu() {
     int x = 45;
     int NumPlayer = 0;
     string name, date;
-    ReadFile("LeaderBoard.txt", PB, NumPlayer);
-    SaveFileBi("Text.txt", PB, NumPlayer);
     // Print the first box of menu
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11);
     MenuBox(x, y + (0 * 2), 30, 2, 11, "Play");
@@ -162,8 +160,7 @@ void LeaderBoard(PlayerBoard PB[MAXLB], int NumPlayer)
     PlaySound(TEXT("background.wav"), NULL, SND_FILENAME | SND_ASYNC);
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
     ReadAndDraw("PlayerTitle.txt", 4, 30, 1);
-    ReadFile("LeaderBoard.txt", PB, NumPlayer);
-    SaveFileBi("Leaderboard.bin", PB, NumPlayer);
+
     int x = 1;
     int y = 8;
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
