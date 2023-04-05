@@ -137,7 +137,7 @@ void ReadAndDraw(string filename, int line, int x, int y)
         y++;
     }
 }
-void SaveFileBi(string filename, PlayerBoard* PB, int NumPlayer) {
+void SaveFileBi(string filename, PlayerBoard PB) {
     ofstream fout;
     fout.open(filename, ios::binary | ios :: out);
     if (!fout.good()) {
