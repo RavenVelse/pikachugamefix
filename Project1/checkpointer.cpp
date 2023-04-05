@@ -199,8 +199,8 @@ bool ZCheck(board**table, int x1, int y1, int x2, int y2)
 	for (int i = min + 1; i < max; i++) {
 		check1 = ICheck(table, x1, i, x2, i);
 		if (check1 == true && table[x1][i].empty == true && table[x2][i].empty == true) {
-			check2 = ICheck(table, x1, i, x1, i);
-			check3 = ICheck(table, x1, i, x2, i);
+			check2 = ICheck(table, x1, y1, x1, i);
+			check3 = ICheck(table, x2, y2, x2, i);
 			if (check2 && check3) {
 				GoTo(70, 25);
 				return true;

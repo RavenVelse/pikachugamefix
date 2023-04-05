@@ -18,4 +18,4 @@ void ReadAndDraw(string filename, int line, int x, int y);
 void SaveFileBi(string filename);
 void ReadBiandPrint(string filename);
 void DeleteBox(int x, int y, board** table, int index1, int index2);
-void DrawStatusBoard();
+void DrawStatusBoard(PlayerBoard player);

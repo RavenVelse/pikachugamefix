@@ -43,11 +43,10 @@ void DisplayBoard(board** table, int size)
 		}
 		y += 5;
 	}
-	DrawStatusBoard();
 }
 
 //Ham cho nguoi dung nhap mui ten va enter de chon o
-void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b1, int& b2)
+void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b1, int& b2,PlayerBoard& player)
 {
 	bool loop = true;
 	int xcurr = x - 1, ycurr = y;
@@ -138,6 +137,8 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 					{
 						DeleteBox(temp1, temp2, table, a1, a2);
 						DeleteBox(xcurr, ycurr, table, b1, b2);
+						player.score += 100;
+						DrawStatusBoard(player);
 						loop = ValidPairLeft(table, size,ch);
 						GoTo(70, 25);
 						if (!loop)
@@ -162,4 +163,16 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 				loop = false;
 		}
 	}
+}
+
+void Normal(PlayerBoard p,int size)
+{
+	board** table = new board * [size];
+	DisplayBoard(table, size);
+	DrawStatusBoard(p);
+	int x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+	PlayerInput(table, size, 2, 0, x1, y1, x2, y2,p);
+	system("cls");
+	GoTo(20, 50);
+	cout << x1 << " " << y1 << "&" << " " << x2 << " " << y2;
 }
