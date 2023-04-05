@@ -71,3 +71,16 @@ void DisPlayBoardLinkList(node* phead, int size)
 		y += 5;
 	}
 }
+
+void PlayerInputLinkList(node* phead, PlayerBoard& player, int size, int x, int y, int& a1, int& a2, int& b1, int& b2)
+{
+
+}
+
+void Difficult(PlayerBoard& player, int size)
+{
+	node* phead = new node;
+	CreateBoardLinkList(phead, size);
+	AssignChar(phead, size);
+	DisPlayBoardLinkList(phead, size);
+}

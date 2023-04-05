@@ -2,6 +2,7 @@
 #include"Normal.h"
 #include"Struct.h"
 #include"Utility.h"
+#include"Difficult.h"
 #pragma comment (lib, "winmm.lib")
 
 using namespace std;
@@ -17,5 +18,9 @@ int main()
     if (mode == 1)
     {
         Normal(player, size);
+    }
+    else if (mode == 2)
+    {
+        Difficult(player, size);
     }
 }

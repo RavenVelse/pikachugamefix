@@ -50,8 +50,8 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 {
 	bool loop = true;
 	int xcurr = x - 1, ycurr = y;
-	int xprev = xcurr, yprev = ycurr;
-	int index1 = 0, index2 = 0, temp1 = xcurr, temp2 = ycurr;
+	int xprev = xcurr, yprev = ycurr, temp1 = xcurr, temp2 = ycurr;
+	int index1 = 0, index2 = 0;
 	int previndex1 = index1, previndex2 = index2;
 	bool enter = false;
 	int timesenter = 0;
@@ -61,7 +61,7 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 	{
 		board curr = table[index1][index2];
 		nd = string(1, table[previndex1][previndex2].c);
-		Highlight(xprev, yprev, 8, 4, 16, 11, nd);
+		Highlight(xprev, yprev, 8, 4, 16, 11, nd); // to den o khac sau khi da move
 		previndex1 = index1;
 		previndex2 = index2;
 		xprev = xcurr;
@@ -75,9 +75,9 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 		else if(!enter)
 		{
 			string nd1 = string(1, table[a1][a2].c);
-			Highlight(temp1, temp2, 8, 4, 16, 11, nd1);
+			Highlight(temp1, temp2, 8, 4, 16, 11, nd1); // to den o chon sai
 		}
-		Highlight(xcurr, ycurr, 8, 4, 15, 11, nd);
+		Highlight(xcurr, ycurr, 8, 4, 15, 11, nd); // to trang o dang di chuyen
 		int ch = _getch();
 		PlaySound(TEXT("move.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		if (ch == 224)
@@ -85,7 +85,7 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 			ch = _getch();
 			switch (ch)
 			{
-				//72:up, 80:down, 77:right, 75:left
+			//72:up, 80:down, 77:right, 75:left
 			case 72:
 				if (index1 != 0 )
 				{
@@ -155,6 +155,8 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 		}
 		else if (char(ch) == 'h')
 		{
+			player.score -= 200;
+			DrawStatusBoard(player);
 			ValidPairLeft(table, size, ch);
 		}
 		else
