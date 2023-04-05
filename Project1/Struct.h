@@ -13,7 +13,16 @@ struct board
 struct PlayerBoard
 {
 	unsigned short num;
-	char name[40];
+	string name;
 	char date[11];
-	double score;
+	double score = 0;
+};
+
+struct  node
+{
+	char c = ' ';
+	int x;
+	int y;
+	bool empty = false;
+	node* next;
 };

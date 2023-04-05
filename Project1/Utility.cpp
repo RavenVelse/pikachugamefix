@@ -239,15 +239,15 @@ void DeleteBox(int x, int y, board** table, int index1, int index2)
     }
 }
 
-void DrawStatusBoard()
+void DrawStatusBoard(PlayerBoard player)
 {
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
     GoTo(84, 1);
     cout << "STATUS BOARD";
     GoTo(71, 2);
-    cout << "- Player name: ";
+    cout << "- Player name: " << player.name;
     GoTo(71, 3);
-    cout << "- Points: ";
+    cout << "- Points: " << player.score;
     GoTo(71, 4);// dia chi thoi gian
     cout << "- Time left: ";
     GoTo(71, 5);

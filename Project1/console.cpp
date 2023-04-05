@@ -44,7 +44,7 @@ void MenuBox(int x, int y, int width, int height, int TextColor, string Text) {
 }       
 //Tutorial:https://cplusplus.com/forum/beginner/241912/
 //Print Menu 
-void MainMenu() {
+void MainMenu(PlayerBoard& player,int& mode,int& size) {
     int y = 15;
     int x = 45;
     char name[40];
@@ -145,15 +145,18 @@ void MainMenu() {
                 loop = false;
         }
 
+        switch (kt) {
+        case 1:
+            TutorialMenu(name, date);
+            NameScreen(player);
+            DifficultScreen(mode, size);
+            break;
+        case 2:
+            LeaderBoard();
+            break;
+        }
     }
-    switch (kt) {
-    case 1:
-        TutorialMenu(name, date);
-        break;
-    case 2:
-        LeaderBoard();
-        break;
-    }
+
 }
 // Print LeaderBoard menu
 void LeaderBoard() {   
@@ -177,7 +180,6 @@ void LeaderBoard() {
     cout << "Press any key to continue!";
     _getch();
     system("cls");
-    MainMenu();
 }
 // Print Tutorial screen 
 void TutorialMenu(string name, string date) {
@@ -234,19 +236,20 @@ void TutorialMenu(string name, string date) {
     GoTo(48, 23);
     cout << "Press any key to continue!";
     _getch();
-    NameScreen(name, date);
 }
 //Print difficult screen
-void DifficultScreen() {
+void DifficultScreen(int& mode, int& size) {
     system("cls");
     int x = 45;
     int y = 14;
-    GoTo(50, 10);
+    GoTo(45, 10);
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-    cout << "Choose the Difficulty";
-    MenuBox(x, y + (0 * 2), 30, 2, 15, "NORMAL");
-    MenuBox(x, y + (1 * 2), 30, 2, 15, "HARD");
-    for (int i = 1; i < 2; i++) {
+    cout << "Choose the difficulty and size";
+    MenuBox(x, y + (0 * 2), 30, 2, 15, "NORMAL 4x4");
+    MenuBox(x, y + (1 * 2), 30, 2, 15, "NORMAL 6x6");
+    MenuBox(x, y + (2 * 2), 30, 2, 15, "HARD   4x4");
+    MenuBox(x, y + (3 * 2), 30, 2, 15, "HARD   6x6");
+    for (int i = 1; i < 4; i++) {
         GoTo(x, y + (i * 2));
         cout << char(195);
         GoTo(x + 30, y + (i * 2));
@@ -263,8 +266,10 @@ void DifficultScreen() {
         switch (ycu)
         {
 
-        case 14: nd = "NORMAL"; break;
-        case 16: nd = "HARD"; break;
+        case 14: nd = "NORMAL 4x4"; break;
+        case 16: nd = "NORMAL 6x6"; break;
+        case 18: nd = "HARD   4x4"; break;
+        case 20: nd = "HARD   6x6"; break;
         default:
             break;
         }
@@ -274,8 +279,10 @@ void DifficultScreen() {
 
         switch (yp)
         {
-        case 14: nd = "NORMAL"; break;
-        case 16: nd = "HARD"; break;
+        case 14: nd = "NORMAL 4x4"; break;
+        case 16: nd = "NORMAL 6x6"; break;
+        case 18: nd = "HARD   4x4"; break;
+        case 20: nd = "HARD   6x6"; break;
         default:
             break;
         }
@@ -295,9 +302,8 @@ void DifficultScreen() {
                     yp -= 2;
                 break;
             case 80:
-                if (yp < (y + 2))
+                if (yp < (y + 6))
                     yp += 2;
-                else yp = 14;
                 break;
             default: break;
             }
@@ -309,20 +315,26 @@ void DifficultScreen() {
             system("cls");
             switch (yp) {
             case 14:
-                kt = 1;
+                mode = 1;
+                size = 4;
                 loop = false;
                 break;
             case 16:
+                mode = 1;
+                size = 6;
+                loop = false;
+                break;
+            case 18: 
+                mode = 2;
+                size = 4;
+                loop = false;
+                break;
+            case 20:
+                mode = 2;
+                size = 6;
                 loop = false;
                 break;
             }
-        }
-        // Press ESC to get back to the main menu
-        if (ch == 27) { // 27: ESC
-            SetColor(0, 0);
-            system("cls");
-            MainMenu();
-            break;
         }
         else
         {
@@ -332,17 +344,13 @@ void DifficultScreen() {
     }
 }
 // Print the name screen 
-void NameScreen(string name, string date) 
+void NameScreen(PlayerBoard& player) 
 {
     system("cls");
     GoTo(50, 14);
     cout << "Your Name: ";
-    cin.ignore();
-    getline(cin, name);
-    GoTo(50, 15);
-    cout << "Date (dd/mm/yyyy): ";
-    getline(cin, date);
-    DifficultScreen();
+    getline(cin, player.name);
+
 }
 // Print the end game screen
 void GameOver(bool result)
@@ -362,7 +370,6 @@ void GameOver(bool result)
         GoTo(45, 20);
         cout << "Press any key to continue!!!";
         _getch();
-        MainMenu();
     }
     else {
         //print the losing screen
@@ -379,6 +386,5 @@ void GameOver(bool result)
         GoTo(35, 20);
         cout << "Maybe you will get luck next time to win this CHILD's game :>>>>";
         _getch();
-        MainMenu();
     }
 }
