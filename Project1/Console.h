@@ -16,7 +16,7 @@ using namespace std;
 void MenuBox(int x, int y, int width, int height, int TextColor, string Text);
 void DrawBox(int x, int y, char c);
 void TutorialMenu(string name, string date);
-void LeaderBoard(PlayerBoard PB[MAXLB], int NumPlayer);
+void LeaderBoard();
 void MainMenu();
 void DifficultScreen();
 void NameScreen(string name, string date);

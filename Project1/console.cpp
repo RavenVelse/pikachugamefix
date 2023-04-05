@@ -45,12 +45,10 @@ void MenuBox(int x, int y, int width, int height, int TextColor, string Text) {
 //Tutorial:https://cplusplus.com/forum/beginner/241912/
 //Print Menu 
 void MainMenu() {
-
-    PlayerBoard PB[MAXLB];
     int y = 15;
     int x = 45;
-    int NumPlayer = 0;
-    string name, date;
+    char name[40];
+    char date[40];
     // Print the first box of menu
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11);
     MenuBox(x, y + (0 * 2), 30, 2, 11, "Play");
@@ -130,6 +128,9 @@ void MainMenu() {
                 loop = false;
                 break;
             case 17:
+                kt = 2;
+                SetColor(0, 0);
+                system("cls");
                 loop = false;
                 break;
             case 19:
@@ -150,17 +151,16 @@ void MainMenu() {
         TutorialMenu(name, date);
         break;
     case 2:
-        LeaderBoard(PB, NumPlayer);
+        LeaderBoard();
         break;
     }
 }
 // Print LeaderBoard menu
-void LeaderBoard(PlayerBoard PB[MAXLB], int NumPlayer) 
-{
+void LeaderBoard() {   
+    SaveFileBi("player.bin");
     PlaySound(TEXT("background.wav"), NULL, SND_FILENAME | SND_ASYNC);
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
     ReadAndDraw("PlayerTitle.txt", 4, 30, 1);
-
     int x = 1;
     int y = 8;
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
@@ -172,7 +172,7 @@ void LeaderBoard(PlayerBoard PB[MAXLB], int NumPlayer)
     cout << "Date";
     GoTo(111, 6);
     cout << "Score";
-    ReadBiandPrint("Text.txt", PB, NumPlayer);
+    ReadBiandPrint("player.bin");
     GoTo(48, 28);
     cout << "Press any key to continue!";
     _getch();
@@ -189,10 +189,6 @@ void TutorialMenu(string name, string date) {
     MenuBox(87, 9, 17, 5, 15, "(0,1)");
     MenuBox(70, 14, 17, 5, 15, "(1,0)");
     MenuBox(87, 14, 17, 5, 15, "(1,1)");
-    /*for (int i = 71; i < 87; i++) {
-        GoTo(i, 14);
-        cout << char(61);
-    }*/
     GoTo(79, 8);
     cout << "0";
     GoTo(97, 8);
