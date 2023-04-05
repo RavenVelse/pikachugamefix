@@ -247,7 +247,9 @@ void DrawStatusBoard(PlayerBoard player)
     GoTo(71, 2);
     cout << "- Player name: " << player.name;
     GoTo(71, 3);
-    cout << "- Points: " << player.score;
+    cout << "- Points: " << "    ";// xoa cho trung` neu nhu diem < 0
+    GoTo(81, 3);
+    cout << player.score;
     GoTo(71, 4);// dia chi thoi gian
     cout << "- Time left: ";
     GoTo(71, 5);

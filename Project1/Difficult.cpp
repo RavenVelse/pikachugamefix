@@ -83,4 +83,5 @@ void Difficult(PlayerBoard& player, int size)
 	CreateBoardLinkList(phead, size);
 	AssignChar(phead, size);
 	DisPlayBoardLinkList(phead, size);
+	_getch();
 }
