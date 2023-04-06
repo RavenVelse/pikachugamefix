@@ -1,6 +1,7 @@
 #pragma once
 #include"Console.h"
 #include"Struct.h"
+#include <thread>
 
 #define MAXLB 100
 using namespace std;
@@ -19,3 +20,4 @@ void SaveFileBi(string filename);
 void ReadBiandPrint(string filename);
 void DeleteBox(int x, int y, board** table, int index1, int index2);
 void DrawStatusBoard(PlayerBoard player);
+void Timer(bool result, int min, int sec);

@@ -172,8 +172,13 @@ void Normal(PlayerBoard p,int size)
 	board** table = new board * [size];
 	DisplayBoard(table, size);
 	DrawStatusBoard(p);
+	bool result = true;
+	int min = 15, sec = 0;
+	thread clock(Timer,result,min,sec);
 	int x1 = 0, y1 = 0, x2 = 0, y2 = 0;
 	PlayerInput(table, size, 2, 0, x1, y1, x2, y2,p);
+	result = false;
+	clock.join();
 	system("cls");
 	GoTo(20, 50);
 	cout << x1 << " " << y1 << "&" << " " << x2 << " " << y2;

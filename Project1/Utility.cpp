@@ -289,3 +289,41 @@ void DrawStatusBoard(PlayerBoard player)
         cout << "|";
     }
 }
+
+void Timer(bool result,int min,int sec )
+{
+    
+    while (result)
+    {
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+        if (min == 0 && sec == 0)
+        {
+            result = false;
+        }
+        GoTo(85, 4);
+        if (min < 10)
+        {
+            cout << " " << min;
+        }
+        else
+        {
+            cout << min;
+        }
+        cout << ":";
+        if (sec < 10)
+        {
+            cout << " " << sec;
+        }
+        else
+        {
+            cout << sec;
+        }
+        if (sec == 0)
+        {
+            min--;
+            sec = 60;
+        }
+        Sleep(1000);
+        sec--;
+    }
+}
