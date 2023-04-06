@@ -74,7 +74,27 @@ void DisPlayBoardLinkList(node* phead, int size)
 
 void PlayerInputLinkList(node* phead, PlayerBoard& player, int size, int x, int y, int& a1, int& a2, int& b1, int& b2)
 {
+	bool loop = true;
+	int xcurr = x - 1, ycurr = y;
+	int xprev = xcurr, yprev = ycurr, temp1 = xcurr, temp2 = ycurr;
+	int index1 = 0, index2 = 0;
+	int previndex1 = index1, previndex2 = index2;
+	bool enter = false;
+	int timesenter = 0;
+	string nd;
+	node* pcurr = phead;
+	node* preve = pcurr;
+	while (loop)
+	{
 
+		nd = string(1, pcurr->c);
+		Highlight(xprev, yprev, 8, 4, 16, 11, nd); // to den o khac sau khi da move
+		previndex1 = index1;
+		previndex2 = index2;
+		xprev = xcurr;
+		yprev = ycurr;
+		nd = string(1, pcurr->c);
+	}
 }
 
 void Difficult(PlayerBoard& player, int size)
@@ -83,5 +103,6 @@ void Difficult(PlayerBoard& player, int size)
 	CreateBoardLinkList(phead, size);
 	AssignChar(phead, size);
 	DisPlayBoardLinkList(phead, size);
-	_getch();
+	int x = 0, y = 0;
+
 }
