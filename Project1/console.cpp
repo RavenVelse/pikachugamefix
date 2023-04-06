@@ -72,7 +72,7 @@ void MainMenu(PlayerBoard& player,int& mode,int& size) {
     int xp = x, yp = y;
     int xcu = xp, ycu = yp;
     bool loop = true;
-    int kt = 1;
+    int kt = 0;
     // Move to choose the features
     while (loop) {
         string nd;
@@ -144,7 +144,6 @@ void MainMenu(PlayerBoard& player,int& mode,int& size) {
             if (char(ch) == '0')
                 loop = false;
         }
-
         switch (kt) {
         case 1:
             TutorialMenu(name, date);
@@ -153,6 +152,8 @@ void MainMenu(PlayerBoard& player,int& mode,int& size) {
             break;
         case 2:
             LeaderBoard();
+            break;
+        default:
             break;
         }
     }
