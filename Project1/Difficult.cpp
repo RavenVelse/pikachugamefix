@@ -84,16 +84,40 @@ void PlayerInputLinkList(node* phead, PlayerBoard& player, int size, int x, int 
 	string nd;
 	node* pcurr = phead;
 	node* preve = pcurr;
+	node* ptemp = pcurr;
 	while (loop)
 	{
 
-		nd = string(1, pcurr->c);
+		nd = string(1, preve->c);
 		Highlight(xprev, yprev, 8, 4, 16, 11, nd); // to den o khac sau khi da move
 		previndex1 = index1;
 		previndex2 = index2;
 		xprev = xcurr;
 		yprev = ycurr;
 		nd = string(1, pcurr->c);
+		ptemp = seeknode(phead, a1, a2, size);
+		if (enter)
+		{
+			string nd1 = string(1,ptemp->c );
+			Highlight(temp1, temp2, 8, 4, 15, 11, nd1); // to mau` o enter
+		}
+		else if (!enter)
+		{
+			string nd1 = string(1, ptemp->c);
+			Highlight(temp1, temp2, 8, 4, 16, 11, nd1); // to den o chon sai
+		}
+		Highlight(xcurr, ycurr, 8, 4, 15, 11, nd); // to trang o dang di chuyen
+		int ch = _getch();
+		PlaySound(TEXT("move.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		if (ch == 224)
+		{
+			ch = _getch();
+			switch (ch)
+			{
+			default:
+				break;
+			}
+		}
 	}
 }
 
