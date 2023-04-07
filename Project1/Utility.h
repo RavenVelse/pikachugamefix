@@ -1,6 +1,8 @@
 #pragma once
 #include"Console.h"
 #include"Struct.h"
+#include <thread>
+#include <future>
 
 #define MAXLB 100
 using namespace std;
