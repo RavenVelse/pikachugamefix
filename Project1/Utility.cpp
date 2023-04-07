@@ -2,6 +2,7 @@
 #pragma comment (lib, "winmm.lib")
 using namespace std;
 // Set position on screen
+// minutes and second variables
 void GoTo(SHORT posX, SHORT posY)
 {
     HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -289,3 +290,4 @@ void DrawStatusBoard(PlayerBoard player)
         cout << "|";
     }
 }
+

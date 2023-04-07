@@ -1,5 +1,8 @@
 #include"Normal.h"
 
+int minute = 15;
+int second = 0;
+bool result = true;
 void CreateBoard(board** table, int w, int h)
 {
 	for (int i = 0; i < w; i++)
@@ -167,14 +170,48 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 	}
 }
 
+int CountSec()
+{
+	return 0;
+}
+void  Timer(promise<int> && promisetotaltime)
+{
+	while (result)
+	{
+
+		if (minute == 0 && second == 0)
+		{
+			result = false;
+		}
+		else if(second == 0)
+		{
+			minute--;
+			second = 60;
+		}
+		Sleep(1000);
+		second--;
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+		GoTo(86, 4);
+		cout << minute << " : " << second;
+	}
+	int countime = minute * 60 + second;
+	promisetotaltime.set_value(countime);
+}
+
 void Normal(PlayerBoard p,int size)
 {
 	board** table = new board * [size];
 	DisplayBoard(table, size);
-	DrawStatusBoard(p);
 	int x1 = 0, y1 = 0, x2 = 0, y2 = 0;
-	PlayerInput(table, size, 2, 0, x1, y1, x2, y2,p);
+	promise<int> totaltime;
+	future<int> final_totaltime = totaltime.get_future();
+	thread clock(Timer, move(totaltime));
+	DrawStatusBoard(p);
+	PlayerInput(table, size, 2, 0, x1, y1, x2, y2, p);
+	result = false;
+	int timescore = final_totaltime.get();
+	p.score += timescore;
+	clock.join();
 	system("cls");
-	GoTo(20, 50);
-	cout << x1 << " " << y1 << "&" << " " << x2 << " " << y2;
+	cout << p.score;
 }
