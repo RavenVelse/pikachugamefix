@@ -1,5 +1,5 @@
 #include"Normal.h"
-
+char bg[30][54];
 void CreateBoard(board** table, int w, int h)
 {
 	for (int i = 0; i < w; i++)
@@ -135,8 +135,10 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 				{
 					if (table[a1][a2].c == table[b1][b2].c && CheckPointer(table, a1, a2, b1, b2, size)) // neu 2 o chon co cung gia tri thi se tra ve dia chi a1 a2 va b1 b2
 					{
-						DeleteBox(temp1, temp2, table, a1, a2);
-						DeleteBox(xcurr, ycurr, table, b1, b2);
+						DeleteBox(temp1, temp2, table, a1, a2,bg);
+						PrintBackground(bg, temp1, temp2);
+						DeleteBox(xcurr, ycurr, table, b1, b2,bg);
+						PrintBackground(bg, xcurr, ycurr);
 						player.score += 100;
 						DrawStatusBoard(player);
 						loop = ValidPairLeft(table, size,ch);
@@ -168,7 +170,9 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 }
 
 void Normal(PlayerBoard p,int size)
-{
+{	
+
+	ReadBackground("bg6x6.txt",bg);
 	board** table = new board * [size];
 	DisplayBoard(table, size);
 	DrawStatusBoard(p);

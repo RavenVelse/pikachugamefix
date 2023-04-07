@@ -161,7 +161,7 @@ void MainMenu(PlayerBoard& player,int& mode,int& size) {
 }
 // Print LeaderBoard menu
 void LeaderBoard() {   
-    SaveFileBi("player.bin");
+    /*SaveFileBi("player.bin");*/
     PlaySound(TEXT("background.wav"), NULL, SND_FILENAME | SND_ASYNC);
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
     ReadAndDraw("PlayerTitle.txt", 4, 30, 1);

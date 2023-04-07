@@ -17,5 +17,7 @@ void Highlight(int x, int y, int width, int height, int BackColor, int TextColor
 void ReadAndDraw(string filename, int line, int x, int y);
 void SaveFileBi(string filename);
 void ReadBiandPrint(string filename);
-void DeleteBox(int x, int y, board** table, int index1, int index2);
+void DeleteBox(int x, int y, board** table, int index1, int index2,char bg[][54]);
 void DrawStatusBoard(PlayerBoard player);
+void ReadBackground(string filename, char bg[][54]);
+void PrintBackground(char bg[][54], int x, int y);

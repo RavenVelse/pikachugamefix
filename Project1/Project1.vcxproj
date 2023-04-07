@@ -144,7 +144,7 @@
     <ClInclude Include="Utility.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\pikachugame\Pikachu\firedragon.txt" />
+    <Text Include="..\..\pikachugame\Pikachu\bg1.txt" />
     <Text Include="..\..\pikachugame\Pikachu\GameOver.txt" />
     <Text Include="..\..\pikachugame\Pikachu\icon.txt" />
     <Text Include="..\..\pikachugame\Pikachu\LeaderBoard.txt" />
@@ -154,6 +154,7 @@
     <Text Include="..\..\pikachugame\Pikachu\StageCompleted.txt" />
     <Text Include="..\..\pikachugame\Pikachu\titlepokemon.txt" />
     <Text Include="..\..\pikachugame\Pikachu\Tutorial.txt" />
+    <Text Include="bg6x6.txt" />
     <Text Include="Pikachu3.txt" />
     <Text Include="Text.txt" />
   </ItemGroup>
@@ -163,6 +164,9 @@
     <Media Include="..\..\pikachugame\Pikachu\lose.wav" />
     <Media Include="..\..\pikachugame\Pikachu\move.wav" />
     <Media Include="..\..\pikachugame\Pikachu\win.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="player.bin" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

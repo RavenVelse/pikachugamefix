@@ -217,11 +217,11 @@ void DrawBox(int x, int y, char c)
     cout << endl;
 }
 
-void DeleteBox(int x, int y, board** table, int index1, int index2)
-{
+void DeleteBox(int x, int y, board** table, int index1, int index2,char bg[][54])
+{ 
     table[index1][index2].c = ' ';
     table[index1][index2].empty = true;
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
     int ytemp = y, xtemp = x;
     for (int i = 0; i < 2; i++)
     {
@@ -234,11 +234,35 @@ void DeleteBox(int x, int y, board** table, int index1, int index2)
     }
     for (int i = 1; i < 4; i++)
     {
-        GoTo(x , y + i);
+        GoTo(x, y + i);
         cout << "         ";
     }
 }
+void ReadBackground(string filename, char bg[][54]) {
+    ifstream fin;
+    fin.open(filename, ios :: in);
+    if (!fin.is_open()) {
+        memset(bg, ' ', sizeof(bg));
+    }
+    else {
+        for (int i = 0; i < 30; i++) {
+            for (int j = 0; j < 54; j++) {
+                bg[i][j] = fin.get();
+            }
+        }
+        fin.close();
+    }
 
+}
+void PrintBackground(char bg[][54], int x,int y) {
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),6);
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 9; j++) {
+            GoTo((x + j), (y + i));
+            cout << bg[y+i][x+j];
+        }
+    }
+}
 void DrawStatusBoard(PlayerBoard player)
 {
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
