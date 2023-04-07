@@ -1,5 +1,5 @@
 #include"Normal.h"
-
+char bg[30][54];
 int minute = 15;
 int second = 0;
 bool result = true;
@@ -138,8 +138,10 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 				{
 					if (table[a1][a2].c == table[b1][b2].c && CheckPointer(table, a1, a2, b1, b2, size)) // neu 2 o chon co cung gia tri thi se tra ve dia chi a1 a2 va b1 b2
 					{
-						DeleteBox(temp1, temp2, table, a1, a2);
-						DeleteBox(xcurr, ycurr, table, b1, b2);
+						DeleteBox(temp1, temp2, table, a1, a2,bg);
+						PrintBackground(bg, temp1, temp2);
+						DeleteBox(xcurr, ycurr, table, b1, b2,bg);
+						PrintBackground(bg, xcurr, ycurr);
 						player.score += 100;
 						DrawStatusBoard(player);
 						loop = ValidPairLeft(table, size,ch);
@@ -199,7 +201,9 @@ void  Timer(promise<int> && promisetotaltime)
 }
 
 void Normal(PlayerBoard p,int size)
-{
+{	
+
+	ReadBackground("bg6x6.txt",bg);
 	board** table = new board * [size];
 	DisplayBoard(table, size);
 	int x1 = 0, y1 = 0, x2 = 0, y2 = 0;

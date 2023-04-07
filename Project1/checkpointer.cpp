@@ -52,7 +52,7 @@ bool ICheck(board** table, int x1, int y1, int x2, int y2)
 	}
 	return false;
 }
-//Reference : phvanmin/pikachu (Ucheck only)
+//Reference : phvanmin/pikachu 
 bool UCheck(board** table, int x1, int y1, int x2, int y2, int size)
 {
 	if (x1 == x2 && x1 == 0 || y1 == y2 && y1 == 0 || x1 == x2 && x1 == size -1 || y1 == y2 && y1 == size - 1)

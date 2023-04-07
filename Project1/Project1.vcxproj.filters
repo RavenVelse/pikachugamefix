@@ -55,7 +55,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\pikachugame\Pikachu\firedragon.txt">
+    <Text Include="..\..\pikachugame\Pikachu\bg1.txt">
       <Filter>Source Files</Filter>
     </Text>
     <Text Include="..\..\pikachugame\Pikachu\GameOver.txt">
@@ -91,6 +91,9 @@
     <Text Include="Text.txt">
       <Filter>Source Files</Filter>
     </Text>
+    <Text Include="bg6x6.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <Media Include="..\..\pikachugame\Pikachu\win.wav">
@@ -108,5 +111,10 @@
     <Media Include="..\..\pikachugame\Pikachu\move.wav">
       <Filter>Source Files</Filter>
     </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="player.bin">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
