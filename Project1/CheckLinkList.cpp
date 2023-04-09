@@ -101,3 +101,17 @@ node* seeknode(node* phead, int x, int y, int size)
 		phead = phead->next;
 	}
 }
+
+
+bool AllCheckLinkList(node* phead,int x1,int y1,int x2,int y2,int size)
+{
+	node* temp = seeknode(phead, x1, y1, size);
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+	if (Icheck_linklist(phead,x1,y1,x2,y2,size))
+	{
+		GoTo(85, 5);
+		cout << temp->c;
+		GoTo(89, 6);
+		cout << "I check";
+	}
+}
