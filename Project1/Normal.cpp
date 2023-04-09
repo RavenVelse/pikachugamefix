@@ -216,6 +216,7 @@ void Normal(PlayerBoard p,int size)
 	int timescore = final_totaltime.get();
 	p.score += timescore;
 	clock.join();
+	DeleteBoard(table, size);
 	system("cls");
 	cout << p.score;
 }

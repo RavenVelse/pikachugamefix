@@ -23,3 +23,4 @@ void DeleteBox(int x, int y, board** table, int index1, int index2,char bg[][54]
 void DrawStatusBoard(PlayerBoard player);
 void ReadBackground(string filename, char bg[][54]);
 void PrintBackground(char bg[][54], int x, int y);
+void DeleteBoard(board** table, int size);
