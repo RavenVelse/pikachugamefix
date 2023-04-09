@@ -17,17 +17,6 @@ node* CreateBoardLinkList(node* phead, int size)
 	return pcurr;
 }
 
-node* seeknode(node* phead, int x, int y, int size)
-{
-	while (phead != NULL)
-	{
-		if (phead->x == x && phead->y == y)
-		{
-			return phead;
-		}
-		phead = phead->next;
-	}
-}
 void AssignChar(node* phead, int size)
 {
 	srand(time(NULL));
@@ -74,14 +63,89 @@ void DisPlayBoardLinkList(node* phead, int size)
 
 void PlayerInputLinkList(node* phead, PlayerBoard& player, int size, int x, int y, int& a1, int& a2, int& b1, int& b2)
 {
-
+	bool loop = true;
+	int xcurr = x - 1, ycurr = y;
+	int xprev = xcurr, yprev = ycurr, temp1 = xcurr, temp2 = ycurr;
+	int index1 = 0, index2 = 0;
+	int previndex1 = index1, previndex2 = index2;
+	bool enter = false;
+	int timesenter = 0;
+	string nd;
+	node* pcurr = phead;
+	node* preve = pcurr;
+	node* ptemp = pcurr;
+	while (loop)
+	{
+		pcurr = seeknode(phead, index1, index2, size);
+		preve = seeknode(phead, previndex1, previndex2, size);
+		nd = string(1, preve->c);
+		Highlight(xprev, yprev, 8, 4, 16, 11, nd); // to den o khac sau khi da move
+		previndex1 = index1;
+		previndex2 = index2;
+		xprev = xcurr;
+		yprev = ycurr;
+		nd = string(1, pcurr->c);
+		ptemp = seeknode(phead, a1, a2, size);
+		if (enter)
+		{
+			string nd1 = string(1, ptemp->c);
+			Highlight(temp1, temp2, 8, 4, 15, 11, nd1); // to mau` o enter
+		}
+		else if (!enter)
+		{
+			string nd1 = string(1, ptemp->c);
+			Highlight(temp1, temp2, 8, 4, 16, 11, nd1); // to den o chon sai
+		}
+		Highlight(xcurr, ycurr, 8, 4, 15, 11, nd); // to trang o dang di chuyen
+		int ch = _getch();
+		PlaySound(TEXT("move.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		if (ch == 224)
+		{
+			ch = _getch();
+			switch (ch)
+			{
+			//72 up, 80 down, 77 right, 75 left
+			case 72:
+				if (index1 != 0)
+				{
+					ycurr -= 5;
+					index1--;
+				}
+				break;
+			case 80:
+				if (index1 != size - 1)
+				{
+					ycurr += 5;
+					index1++;
+				}
+				break;
+			case 75:
+				if (index2 != 0)
+				{
+					xcurr -= 9;
+					index2--;
+				}
+				break;
+			case 77:
+				if (index2 != size - 1)
+				{
+					xcurr += 9;
+					index2++;
+				}
+				break;
+			default: break;
+			}
+		}
+	}
 }
 
 void Difficult(PlayerBoard& player, int size)
 {
 	node* phead = new node;
+	int x1 = 0, y1 = 0, x2 = 0, y2 = 0;
 	CreateBoardLinkList(phead, size);
 	AssignChar(phead, size);
 	DisPlayBoardLinkList(phead, size);
+	PlayerInputLinkList(phead, player, size, 2, 0, x1, y1, x2, y2);
 	_getch();
 }

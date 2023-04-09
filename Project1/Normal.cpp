@@ -172,10 +172,6 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 	}
 }
 
-int CountSec()
-{
-	return 0;
-}
 void  Timer(promise<int> && promisetotaltime)
 {
 	while (result)

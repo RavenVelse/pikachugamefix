@@ -128,6 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CheckLinkList.cpp" />
     <ClCompile Include="checkpointer.cpp" />
     <ClCompile Include="console.cpp" />
     <ClCompile Include="Difficult.cpp" />
@@ -136,6 +137,7 @@
     <ClCompile Include="Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="checklinklisted.h" />
     <ClInclude Include="checkpointer.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="Difficult.h" />
