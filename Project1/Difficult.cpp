@@ -221,6 +221,25 @@ void PlayerInputLinkList(node* phead, PlayerBoard& player, int size, int x, int 
 	}
 }
 
+void DelteLinkListBoard(node* phead,int size)
+{
+	node* preve = NULL;
+	int l = size * size;
+	while (phead->next != NULL)
+	{
+		node* pcur = phead;
+		for (int i = 0; i < l; i++)
+		{
+			preve = pcur;
+			pcur = pcur->next;
+		}
+		delete pcur;
+		preve->next = NULL;
+		l--;
+	}
+	delete phead;
+}
+
 void Difficult(PlayerBoard& player, int size)
 {
 	node* phead = new node;
@@ -230,5 +249,6 @@ void Difficult(PlayerBoard& player, int size)
 	DisPlayBoardLinkList(phead, size);
 	DrawStatusBoard(player);
 	PlayerInputLinkList(phead, player, size, 2, 0, x1, y1, x2, y2);
+	DelteLinkListBoard(phead,size);
 	_getch();
 }
