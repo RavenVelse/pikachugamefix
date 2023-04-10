@@ -350,53 +350,18 @@ void DifficultScreen(int& mode, int& size) {
     }
 }
 // Print the name screen 
-void NameScreen(PlayerBoard &player)
+void NameScreen(PlayerBoard *player)
 {   
+    int num_acc = 0;
     system("cls");
-    /*
-    ifstream fin;
-    fin.open("player.bin", ios::binary, ios :: in);
-    fin.seekg(0, ios::end);
-    int num = fin.tellg() / sizeof(PlayerBoard);
-    fin.seekg(0, ios::beg);
-    PlayerBoard* player = new PlayerBoard[num];
-    for (int i = 0; i < num; i++) {
-        fin.read((char*)&player[i], sizeof(PlayerBoard));
-    }
-    fin.close();*/
     GoTo(50, 14);
     cout << "Your ig name: ";
-    fgets(player.name, sizeof(player.name), stdin);
-    /*while (true) {
+    fgets(player[num_acc].name, sizeof(player[num_acc].name), stdin);
+    
+   /* bool loop = 1;
+    while (1) {
         GoTo(50, 15);
-        cout << "Date (dd/mm/yyyy): ";
-        fgets(player.date, sizeof(player.date), stdin);
-
-        char* d = nullptr;
-        char* m = nullptr;
-        char* y = nullptr;
-        char* first_space;
-        char* last_space;
-
-        first_space = strchr(player.date, '/');
-        int size = first_space - player.date;
-        strncpy(d, player.date, size);
-        d[size] = '\0';
-
-        last_space = strrchr(player.date, '/');
-        strcpy(y, last_space + 1);
-
-        first_space = strchr(d, '/');
-        size = first_space - d;
-        strncpy(m, d, size);
-        m[size] = '\0';
-
-        if (!CheckDay(d, m, y)) {
-            GoTo(50, 18);
-            cout << "The input of day is not valid!!!";
-            GoTo(50, 19);
-            cout << "Try again!";
-        }
+        cout < 
     }*/
 }
 // Print the end game screen

@@ -148,6 +148,18 @@ void SaveFileBi(string filename,PlayerBoard player) {
     fout.write((char*) & player, sizeof(PlayerBoard));
     fout.close();
 }
+void ReadBi(string filename, PlayerBoard* player, int& num_acc) {
+    ifstream fin;
+    fin.open(filename, ios::binary | ios::in);
+    fin.seekg(0, ios::end);
+    num_acc = fin.tellg() / sizeof(PlayerBoard);
+    fin.seekg(0, ios::beg);
+    PlayerBoard* player = new PlayerBoard[num_acc];
+    for (int i = 0; i < num_acc; i++) {
+        fin.read((char*)&player[i], sizeof(PlayerBoard));
+    }
+    fin.close();
+}
 void ReadBiandPrint(string filename) {
     PlayerBoard;
     int x = 1;
@@ -288,7 +300,7 @@ void PrintBackground(char bg[][54], int x,int y) {
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 9; j++) {
             GoTo(x + j, y + i);
-            cout << bg[y * 5 +i][x * 8 +j];
+            cout << bg[y +i][x +j];
         }
     }
 }
@@ -303,7 +315,7 @@ void DrawStatusBoard(PlayerBoard player)
     cout << "- Player name: " << player.name;
     GoTo(71, 4);
     cout << "- Points: " << "    ";// xoa cho trung` neu nhu diem < 0
-    GoTo(81, 3);
+    GoTo(81, 4);
     cout << player.score;
     GoTo(71, 5);// dia chi thoi gian
     cout << "- Time left: ";
