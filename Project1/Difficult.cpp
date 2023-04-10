@@ -136,6 +136,55 @@ void PlayerInputLinkList(node* phead, PlayerBoard& player, int size, int x, int 
 			default: break;
 			}
 		}
+		if (ch == 13)
+		{
+			timesenter++;
+			if (timesenter == 1)
+			{
+				a1 = index1;
+				a2 = index2;
+				temp1 = xcurr, temp2 = ycurr;
+				enter = true;
+			}
+			else if (timesenter == 2)
+			{
+				b1 = index1;
+				b2 = index2;
+				if (a1 != b1 || a2 != b2)
+				{
+					node* p1 = seeknode(phead, a1, a2, size);
+					node* p2 = seeknode(phead, b1, b2, size);
+					if (p1->c == p2->c && AllCheckLinkList(phead, a1, a2, b1, b2, size)) // neu 2 o chon co cung gia tri thi se tra ve dia chi a1 a2 va b1 b2
+					{
+						DeleteLinkList(temp1, temp2, phead, a1, a2);
+						DeleteLinkList(xcurr, ycurr, phead, b1, b2);
+						player.score += 100;
+						DrawStatusBoard(player);
+						loop = ValidPairLeftLinkList(phead, size, ch);
+						GoTo(70, 25);
+						if (!loop)
+						{
+							cout << "No valid pairs left";
+							_getch();
+						}
+					}
+				}
+				timesenter = 0;
+				enter = false;
+			}
+
+		}
+		else if (char(ch) == 'h')
+		{
+			player.score -= 200;
+			DrawStatusBoard(player);
+			ValidPairLeftLinkList(phead, size, ch);
+		}
+		else
+		{
+			if (char(ch) == '0')
+				loop = false;
+		}
 	}
 }
 
@@ -146,6 +195,7 @@ void Difficult(PlayerBoard& player, int size)
 	CreateBoardLinkList(phead, size);
 	AssignChar(phead, size);
 	DisPlayBoardLinkList(phead, size);
+	DrawStatusBoard(player);
 	PlayerInputLinkList(phead, player, size, 2, 0, x1, y1, x2, y2);
 	_getch();
 }

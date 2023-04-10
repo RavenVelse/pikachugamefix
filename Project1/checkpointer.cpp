@@ -202,7 +202,6 @@ bool ZCheck(board**table, int x1, int y1, int x2, int y2)
 			check2 = ICheck(table, x1, y1, x1, i);
 			check3 = ICheck(table, x2, y2, x2, i);
 			if (check2 && check3) {
-				GoTo(70, 25);
 				return true;
 			}
 		}

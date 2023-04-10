@@ -323,3 +323,33 @@ void DeleteBoard(board** table,int size)
     }
 }
 
+void DeleteLinkList(int x, int y, node* phead, int index1, int index2)
+{
+    while (phead != NULL)
+    {
+        if (phead->x == index1 && phead->y == index2)
+        {
+            phead->c = ' ';
+            phead->empty = true;
+            break;
+        }
+        phead = phead->next;
+    }
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+    int ytemp = y, xtemp = x;
+    for (int i = 0; i < 2; i++)
+    {
+        GoTo(x, ytemp);
+        for (int j = 0; j < 8; j++)
+        {
+            cout << " ";
+        }
+        ytemp += 4;
+    }
+    for (int i = 1; i < 4; i++)
+    {
+        GoTo(x, y + i);
+        cout << "         ";
+    }
+}
+
