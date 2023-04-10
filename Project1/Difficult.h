@@ -8,3 +8,4 @@ node* CreateBoardLinkList(node* phead, int size);
 void AssignChar(node* phead, int size);
 void DisPlayBoardLinkList(node* phead, int size);
 void Difficult(PlayerBoard& player, int size);
+void LeftSliding(node* phead, int x, int y, int size);

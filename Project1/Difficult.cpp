@@ -16,6 +16,37 @@ node* CreateBoardLinkList(node* phead, int size)
 	}
 	return pcurr;
 }
+void LeftSliding(node* phead, int x, int y, int size)
+{
+	bool check = true;
+	while (check == true)
+	{
+		for (int i = y; i < (size - 1); i++)
+		{
+			node* p1 = seeknode(phead, x, i, size);
+			node* p2 = seeknode(phead, x, i + 1, size);
+			if (p1->empty == true && p2->empty == false)
+			{
+				p1->c = p2->c;
+				p1->empty = false;
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
+				DrawBox(i*9+2,x*5, p1->c);
+				DeleteLinkList(((i + 1) * 9)+1, x * 5, phead, x, i + 1);
+			}
+		}
+		check = false;
+		for (int i = y; i < (size - 1); i++)
+		{
+			node* ptemp1 = seeknode(phead, x, i, size);
+			node* ptemp2 = seeknode(phead, x, i + 1, size);
+			if (ptemp1->empty == true && ptemp2->empty == false)
+			{
+				check = true;
+				break;
+			}
+		}
+	}
+}
 
 void AssignChar(node* phead, int size)
 {
@@ -158,6 +189,8 @@ void PlayerInputLinkList(node* phead, PlayerBoard& player, int size, int x, int 
 					{
 						DeleteLinkList(temp1, temp2, phead, a1, a2);
 						DeleteLinkList(xcurr, ycurr, phead, b1, b2);
+						LeftSliding(phead, a1, a2, size);
+						LeftSliding(phead, b1, b2, size);
 						player.score += 100;
 						DrawStatusBoard(player);
 						loop = ValidPairLeftLinkList(phead, size, ch);
