@@ -1,6 +1,6 @@
 #include"Normal.h"
 char bg[30][54];
-int minute = 15;
+int minute = 1;
 int second = 0;
 bool result = true;
 void CreateBoard(board** table, int w, int h)
@@ -60,7 +60,7 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 	int timesenter = 0;
 	string nd;
 
-	while (loop)
+	while (loop == true && result == true)
 	{
 		board curr = table[index1][index2];
 		nd = string(1, table[previndex1][previndex2].c);
@@ -184,17 +184,25 @@ void  Timer(promise<int> && promisetotaltime)
 		if (minute == 0 && second == 0)
 		{
 			result = false;
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+			GoTo(84, 4);
+			cout << "Time over press any key";
 		}
 		else if(second == 0)
 		{
 			minute--;
 			second = 60;
 		}
-		Sleep(1000);
-		second--;
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
-		GoTo(86, 4);
-		cout << minute << " : " << second;
+		else
+		{
+			Sleep(1000);
+			second--;
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+			GoTo(84, 4);
+			cout << "            ";
+			GoTo(84, 4);
+			cout << minute << " : " << second;
+		}
 	}
 	int countime = minute * 60 + second;
 	promisetotaltime.set_value(countime);
@@ -214,6 +222,7 @@ void Normal(PlayerBoard p,int size){
 	int timescore = final_totaltime.get();
 	p.score += timescore;
 	clock.join();
+	DeleteBoard(table, size);
 	system("cls");
 	cout << p.score;
 }

@@ -419,3 +419,11 @@ bool CheckDay(char* d,char *m, char *y) {
     return false;
 }
 
+void DeleteBoard(board** table,int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        delete[] table[i];
+    }
+}
+
