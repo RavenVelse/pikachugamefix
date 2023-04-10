@@ -200,9 +200,7 @@ void  Timer(promise<int> && promisetotaltime)
 	promisetotaltime.set_value(countime);
 }
 
-void Normal(PlayerBoard p,int size)
-{	
-
+void Normal(PlayerBoard p,int size){	
 	ReadBackground("bg6x6.txt",bg);
 	board** table = new board * [size];
 	DisplayBoard(table, size);

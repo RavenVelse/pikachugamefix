@@ -94,6 +94,9 @@
     <Text Include="bg6x6.txt">
       <Filter>Source Files</Filter>
     </Text>
+    <Text Include="account.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <Media Include="..\..\pikachugame\Pikachu\win.wav">

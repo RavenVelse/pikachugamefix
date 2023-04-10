@@ -48,7 +48,7 @@ void MainMenu(PlayerBoard& player,int& mode,int& size) {
     int y = 15;
     int x = 45;
     char name[40];
-    char date[40];
+    char date[11];
     // Print the first box of menu
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11);
     MenuBox(x, y + (0 * 2), 30, 2, 11, "Play");
@@ -146,12 +146,12 @@ void MainMenu(PlayerBoard& player,int& mode,int& size) {
         }
         switch (kt) {
         case 1:
-            TutorialMenu(name, date);
+            TutorialMenu();
             NameScreen(player);
             DifficultScreen(mode, size);
             break;
         case 2:
-            LeaderBoard();
+            LeaderBoard(player,mode,size);
             break;
         default:
             break;
@@ -160,8 +160,9 @@ void MainMenu(PlayerBoard& player,int& mode,int& size) {
 
 }
 // Print LeaderBoard menu
-void LeaderBoard() {   
-    /*SaveFileBi("player.bin");*/
+void LeaderBoard(PlayerBoard& player, int& mode, int& size) {
+    /*player = { 1, "Tan","15/12/2022",9999,"123456789",1,1,1 };
+    SaveFileBi("player.bin",player);*/
     PlaySound(TEXT("background.wav"), NULL, SND_FILENAME | SND_ASYNC);
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
     ReadAndDraw("PlayerTitle.txt", 4, 30, 1);
@@ -172,18 +173,22 @@ void LeaderBoard() {
     cout << "Top";
     GoTo(6, 6);
     cout << "Player";
+    GoTo(56, 6);
+    cout << "Achivements";
     GoTo(91, 6);
     cout << "Date";
     GoTo(111, 6);
     cout << "Score";
     ReadBiandPrint("player.bin");
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
     GoTo(48, 28);
     cout << "Press any key to continue!";
     _getch();
     system("cls");
+    MainMenu(player, mode, size);
 }
 // Print Tutorial screen 
-void TutorialMenu(string name, string date) {
+void TutorialMenu() {
     PlaySound(TEXT("effect.wav"), NULL, SND_FILENAME | SND_ASYNC);
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
     ReadAndDraw("Tutorial.txt", 4, 37, 1);
@@ -345,17 +350,58 @@ void DifficultScreen(int& mode, int& size) {
     }
 }
 // Print the name screen 
-void NameScreen(PlayerBoard& player) 
-{
+void NameScreen(PlayerBoard &player)
+{   
     system("cls");
+    /*
+    ifstream fin;
+    fin.open("player.bin", ios::binary, ios :: in);
+    fin.seekg(0, ios::end);
+    int num = fin.tellg() / sizeof(PlayerBoard);
+    fin.seekg(0, ios::beg);
+    PlayerBoard* player = new PlayerBoard[num];
+    for (int i = 0; i < num; i++) {
+        fin.read((char*)&player[i], sizeof(PlayerBoard));
+    }
+    fin.close();*/
     GoTo(50, 14);
-    cout << "Your Name: ";
-    getline(cin, player.name);
+    cout << "Your ig name: ";
+    fgets(player.name, sizeof(player.name), stdin);
+    /*while (true) {
+        GoTo(50, 15);
+        cout << "Date (dd/mm/yyyy): ";
+        fgets(player.date, sizeof(player.date), stdin);
 
+        char* d = nullptr;
+        char* m = nullptr;
+        char* y = nullptr;
+        char* first_space;
+        char* last_space;
+
+        first_space = strchr(player.date, '/');
+        int size = first_space - player.date;
+        strncpy(d, player.date, size);
+        d[size] = '\0';
+
+        last_space = strrchr(player.date, '/');
+        strcpy(y, last_space + 1);
+
+        first_space = strchr(d, '/');
+        size = first_space - d;
+        strncpy(m, d, size);
+        m[size] = '\0';
+
+        if (!CheckDay(d, m, y)) {
+            GoTo(50, 18);
+            cout << "The input of day is not valid!!!";
+            GoTo(50, 19);
+            cout << "Try again!";
+        }
+    }*/
 }
 // Print the end game screen
 void GameOver(bool result)
-{
+{   
     if (result == true) {
         // Print the winning screen
         ReadAndDraw("StageCompleted.txt", 5, 30, 12);

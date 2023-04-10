@@ -1,4 +1,5 @@
-#include"Utility.h"
+﻿#include"Utility.h"
+#pragma warning(disable : 4996)
 #pragma comment (lib, "winmm.lib")
 using namespace std;
 // Set position on screen
@@ -138,14 +139,13 @@ void ReadAndDraw(string filename, int line, int x, int y)
         y++;
     }
 }
-void SaveFileBi(string filename) {
-    PlayerBoard PB;
+void SaveFileBi(string filename,PlayerBoard player) {
     ofstream fout;
     fout.open(filename, ios::binary | ios :: app);
     if (!fout.good()) {
         return;
     }
-    fout.write((char*) & PB, sizeof(PlayerBoard));
+    fout.write((char*) & player, sizeof(PlayerBoard));
     fout.close();
 }
 void ReadBiandPrint(string filename) {
@@ -161,7 +161,23 @@ void ReadBiandPrint(string filename) {
     for (int i = 0; i < num; i++) {
         fin.read((char*)&player[i], sizeof(PlayerBoard));
     }
+    // Sắp xếp lại dữ liệu người chơi theo điểm với selection sort
     for (int i = 0; i < num; i++) {
+        int maxID = i;
+        for (int j = i + 1; j < num; j++) {
+            if (player[j].score >= player[maxID].score) {
+                maxID = j;
+            }
+            swap(player[i].name, player[maxID].name);
+            swap(player[i].date, player[maxID].date);
+            swap(player[i].pass, player[maxID].pass);
+            swap(player[i].score, player[maxID].score);
+            swap(player[i].achive1, player[maxID].achive1);
+            swap(player[i].achive2, player[maxID].achive2);
+            swap(player[i].achive3, player[maxID].achive3);
+        }
+    }
+        for (int i = 0; i < num && i < 10; i++) {
         if(i == 0) {
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);
         }if (i == 1) {
@@ -173,6 +189,16 @@ void ReadBiandPrint(string filename) {
         cout << player[i].num;
         GoTo(x + 5, y);
         cout << player[i].name;
+        GoTo(x + 55, y);
+        if ((player[i].achive1 == 1 && player[i].achive2 == 0 && player[i].achive3 == 0) || (player[i].achive1 == 0 && player[i].achive2 == 1 && player[i].achive3 == 0) || (player[i].achive1 == 0 && player[i].achive2 == 0 && player[i].achive3 == 1)) {
+            cout << 1;
+        }
+        else if ((player[i].achive1 == 1 && player[i].achive2 == 1 && player[i].achive3 == 0) || (player[i].achive1 == 0 && player[i].achive2 == 1 && player[i].achive3 == 1) || (player[i].achive1 == 1 && player[i].achive2 == 0 && player[i].achive3 == 1)) {
+            cout << 2;
+        }
+        else if (player[i].achive1 == 1 && player[i].achive2 == 1 && player[i].achive3 == 1) {
+            cout << 3;
+        }
         GoTo(x + 90, y);
         cout << player[i].date;
         GoTo(x + 110, y);
@@ -243,13 +269,15 @@ void ReadBackground(string filename, char bg[][54]) {
     ifstream fin;
     fin.open(filename, ios :: in);
     if (!fin.is_open()) {
-        memset(bg, ' ', sizeof(bg));
+        system("exit");
     }
     else {
+        fin.ignore();
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 54; j++) {
                 bg[i][j] = fin.get();
             }
+            fin.ignore();
         }
         fin.close();
     }
@@ -259,8 +287,8 @@ void PrintBackground(char bg[][54], int x,int y) {
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),6);
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 9; j++) {
-            GoTo((x + j), (y + i));
-            cout << bg[y+i][x+j];
+            GoTo(x + j, y + i);
+            cout << bg[y * 5 +i][x * 8 +j];
         }
     }
 }
@@ -270,18 +298,20 @@ void DrawStatusBoard(PlayerBoard player)
     GoTo(84, 1);
     cout << "STATUS BOARD";
     GoTo(71, 2);
-    cout << "- Player name: " << player.name;
+    cout << "- Date: " << player.date;
     GoTo(71, 3);
+    cout << "- Player name: " << player.name;
+    GoTo(71, 4);
     cout << "- Points: " << "    ";// xoa cho trung` neu nhu diem < 0
     GoTo(81, 3);
     cout << player.score;
-    GoTo(71, 4);// dia chi thoi gian
+    GoTo(71, 5);// dia chi thoi gian
     cout << "- Time left: ";
-    GoTo(71, 5);
-    cout << "- Char match: ";
     GoTo(71, 6);
-    cout << "- Matching style: ";
+    cout << "- Char match: ";
     GoTo(71, 7);
+    cout << "- Matching style: ";
+    GoTo(71, 8);
     cout << "- Help: ";
     GoTo(80, 13);
     cout << "RULES AND KEYS CONTROL";
@@ -313,5 +343,67 @@ void DrawStatusBoard(PlayerBoard player)
         GoTo(110, i);
         cout << "|";
     }
+}
+bool CheckLeapYear(char x) {
+    if ((x % 4 == 0 && x % 100 != 0) || x % 400 == 0) {
+        return true;
+    }
+    return false;
+}
+bool CheckDay(char* d,char *m, char *y) {
+
+    string day(d);
+    int d1 = stoi(day);
+    string month(m);
+    int m1 = stoi(month);
+    string year(y);
+    int y1 = stoi(year);
+    if (CheckLeapYear(y1)) {
+        switch (m1) {
+        case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+            if (d1 < 32 && d1> 0) {
+                return true;
+            }
+            else return false;
+            break;
+        case 4: case 6: case 9 : case 11:
+            if (d1 < 31 && d1 >0) {
+                return true;
+            }
+            else return false;
+            break;
+        case 2:
+            if (d1 < 30 && d1 > 0) {
+                return true;
+            }
+            else return false;
+        default:
+            return false;
+        }
+    }
+    else if (!CheckLeapYear(y1)) {
+        switch (m1) {
+        case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+            if (d1 < 32 && d1> 0) {
+                return true;
+            }
+            else return false;
+            break;
+        case 4: case 6: case 9: case 11:
+            if (d1 < 31 && d1 >0) {
+                return true;
+            }
+            else return false;
+            break;
+        case 2:
+            if (d1 < 29 && d1 > 0) {
+                return true;
+            }
+            else return false;
+        default:
+            return false;
+        }
+    }
+    return false;
 }
 
