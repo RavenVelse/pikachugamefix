@@ -55,19 +55,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\pikachugame\Pikachu\bg1.txt">
-      <Filter>Source Files</Filter>
-    </Text>
     <Text Include="..\..\pikachugame\Pikachu\GameOver.txt">
       <Filter>Source Files</Filter>
     </Text>
-    <Text Include="..\..\pikachugame\Pikachu\icon.txt">
-      <Filter>Source Files</Filter>
-    </Text>
     <Text Include="..\..\pikachugame\Pikachu\LeaderBoard.txt">
-      <Filter>Source Files</Filter>
-    </Text>
-    <Text Include="..\..\pikachugame\Pikachu\pika2.txt">
       <Filter>Source Files</Filter>
     </Text>
     <Text Include="..\..\pikachugame\Pikachu\pikachu1.txt">
@@ -92,9 +83,6 @@
       <Filter>Source Files</Filter>
     </Text>
     <Text Include="bg6x6.txt">
-      <Filter>Source Files</Filter>
-    </Text>
-    <Text Include="account.txt">
       <Filter>Source Files</Filter>
     </Text>
   </ItemGroup>

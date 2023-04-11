@@ -47,8 +47,8 @@ void MenuBox(int x, int y, int width, int height, int TextColor, string Text) {
 void MainMenu(PlayerBoard& player,int& mode,int& size) {
     int y = 15;
     int x = 45;
-    char name[40];
-    char date[11];
+    Account acc[100];
+
     // Print the first box of menu
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11);
     MenuBox(x, y + (0 * 2), 30, 2, 11, "Play");
@@ -147,7 +147,7 @@ void MainMenu(PlayerBoard& player,int& mode,int& size) {
         switch (kt) {
         case 1:
             TutorialMenu();
-            NameScreen(player);
+            NameScreen(acc,player);
             DifficultScreen(mode, size);
             break;
         case 2:
@@ -161,8 +161,8 @@ void MainMenu(PlayerBoard& player,int& mode,int& size) {
 }
 // Print LeaderBoard menu
 void LeaderBoard(PlayerBoard& player, int& mode, int& size) {
-    /*player = { 1, "Tan","15/12/2022",9999,"123456789",1,1,1 };
-    SaveFileBi("player.bin",player);*/
+    player = { 2, "Tan","15/12/2021",9000,"123456789",1,1,1 };
+    SaveFileBi("player.bin",player);
     PlaySound(TEXT("background.wav"), NULL, SND_FILENAME | SND_ASYNC);
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
     ReadAndDraw("PlayerTitle.txt", 4, 30, 1);
@@ -350,19 +350,145 @@ void DifficultScreen(int& mode, int& size) {
     }
 }
 // Print the name screen 
-void NameScreen(PlayerBoard *player)
-{   
-    int num_acc = 0;
-    system("cls");
-    GoTo(50, 14);
-    cout << "Your ig name: ";
-    fgets(player[num_acc].name, sizeof(player[num_acc].name), stdin);
-    
-   /* bool loop = 1;
-    while (1) {
+void Login(PlayerBoard  player, int num,Account *acc) {
+
+    int loop = true;
+    while (loop) {
+        SetColor(0, 0);
+        system("cls");
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+        GoTo(50, 14);
+        cout << "Your ig name: ";
+        fgets(player.name, sizeof(player.name), stdin);
         GoTo(50, 15);
-        cout < 
-    }*/
+        cout << "Your Password: ";
+        fgets(player.pass, sizeof(player.pass), stdin);
+        for (int i = 0; i < num; i++) {
+            if (strcmp(player.name, acc[i].name) == 0 && strcmp(player.pass, acc[i].pass)) {
+                GoTo(45, 18);
+                cout << "LOGIN SUCCESFULL!!";
+                loop = false;
+                system("pause");
+            }
+            else {
+                GoTo(45, 18);
+                cout << "LOGIN FAILED!!";
+                system("pause");
+            }
+        }
+    }
+}
+// Print the name screen 
+void NameScreen(Account acc[MAXLB], PlayerBoard& player)
+{
+    ifstream fin;
+    fin.open("player.bin", ios::binary | ios::in);
+    fin.seekg(0, ios::end);
+    int num = fin.tellg() / sizeof(Account);
+    fin.seekg(0, ios::beg);
+    for (int i = 0; i < num; i++) {
+        fin.read((char*)&acc[i], sizeof(Account));
+    }
+
+    int x = 45;
+    int y = 15;
+    system("cls");
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+    MenuBox(x, y, 30, 2, 11, "LOGIN");
+    MenuBox(x, y + 2, 30, 2, 11, "SIGN IN");
+    for (int i = 1; i < 2; i++) {
+        GoTo(x, y + (i * 2));
+        cout << char(195);
+        GoTo(x + 30, y + (i * 2));
+        cout << char(180);
+    }
+    int xp = x, yp = y;
+    int xcu = xp, ycu = yp;
+    bool loop = true;
+    int kt = 1;
+    while (loop) {
+        string nd;
+        switch (ycu)
+        {
+
+        case 15: nd = "LOGIN"; break;
+        case 17: nd = "SIGN IN"; break;
+        default:
+            break;
+        }
+        Highlight(xcu + 1, ycu, 28, 2, 16, 11, nd);// Blackened the box before
+        xcu = xp;
+        ycu = yp;
+
+        switch (yp)
+        {
+        case 15: nd = "LOGIN"; break;
+        case 17: nd = "SIGN IN"; break;
+        default:
+            break;
+        }
+        Highlight(xp + 1, yp, 28, 2, 15, 11, nd);// Hightlight the chosen box
+        int ch = _getch();
+        // 224: arrow buttons
+        if (ch == 224)
+        {
+            ch = _getch();
+            switch (ch)
+            {
+                //72:up, 80:down, 77:right, 75:left
+            case 72:
+                if (yp > y)
+                    yp -= 2;
+                break;
+            case 80:
+                if (yp < (y + 2))
+                    yp += 2;
+                else yp = 15;
+                break;
+            default: break;
+            }
+        }
+        // Enter to choose the feature 
+        if (ch == 13) {
+            switch (yp) {
+            case 15:
+                SetColor(0, 0);
+                system("cls");
+                kt = 1;
+                loop = false;
+                break;
+            case 17:
+                kt = 2;
+                SetColor(0, 0);
+                system("cls");
+                loop = false;
+                break;
+            default:
+                break;
+            }
+        }
+        else
+        {
+            if (char(ch) == '0')
+                loop = false;
+        }
+        switch (kt) {
+        case 1:
+            Login(player, num,acc);
+            break;
+        case 2:
+            system("cls");
+            GoTo(50, 14);
+            cout << "Your ig name: ";
+            fgets(player.name, sizeof(player.name), stdin);
+            GoTo(50, 15);
+            cout << "Your Password: ";
+            fgets(player.pass, sizeof(player.pass), stdin);
+            break;
+        default:
+            break;
+        }
+    }
 }
 // Print the end game screen
 void GameOver(bool result)

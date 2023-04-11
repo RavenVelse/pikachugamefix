@@ -20,4 +20,4 @@ void TutorialMenu();
 void LeaderBoard(PlayerBoard& player, int& mode, int& size);
 void MainMenu(PlayerBoard& player, int& mode,int& size);
 void DifficultScreen(int& mode, int& size);
-void NameScreen(PlayerBoard& player);
+void NameScreen(Account acc[MAXLB], PlayerBoard& player);

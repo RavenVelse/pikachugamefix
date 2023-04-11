@@ -148,18 +148,6 @@ void SaveFileBi(string filename,PlayerBoard player) {
     fout.write((char*) & player, sizeof(PlayerBoard));
     fout.close();
 }
-void ReadBi(string filename, PlayerBoard* player, int& num_acc) {
-    ifstream fin;
-    fin.open(filename, ios::binary | ios::in);
-    fin.seekg(0, ios::end);
-    num_acc = fin.tellg() / sizeof(PlayerBoard);
-    fin.seekg(0, ios::beg);
-    PlayerBoard* player = new PlayerBoard[num_acc];
-    for (int i = 0; i < num_acc; i++) {
-        fin.read((char*)&player[i], sizeof(PlayerBoard));
-    }
-    fin.close();
-}
 void ReadBiandPrint(string filename) {
     PlayerBoard;
     int x = 1;
@@ -198,7 +186,7 @@ void ReadBiandPrint(string filename) {
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8);
         }
         GoTo(x, y);
-        cout << player[i].num;
+        cout << i + 1;
         GoTo(x + 5, y);
         cout << player[i].name;
         GoTo(x + 55, y);
