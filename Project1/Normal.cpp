@@ -1,6 +1,6 @@
 #include"Normal.h"
 char bg[30][54];
-int minute = 1;
+int minute = 10;
 int second = 0;
 bool result = true;
 void CreateBoard(board** table, int w, int h)
@@ -148,7 +148,11 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 						GoTo(70, 25);
 						if (!loop)
 						{
-							cout << "No valid pairs left";
+							GoTo(71, 8);
+							cout << "- No valid pairs left press any keys to";
+							GoTo(71, 9);
+							cout << " continue";
+							result = false;
 							_getch();
 						}
 					}

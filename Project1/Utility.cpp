@@ -290,9 +290,9 @@ void DrawStatusBoard(PlayerBoard player)
     GoTo(71, 15);
     cout << "- Using help will cost you 200 points";
     GoTo(71, 16);
-    cout << "- For each minutes that you have left";
+    cout << "- For each seconds that you have left";
     GoTo(71, 17);
-    cout << "will give you minutes * 100 points";
+    cout << "will give you seconds * 1 points";
     GoTo(71, 18);
     cout << "- Press arrow keys to move, enter to ";
     GoTo(71, 19);

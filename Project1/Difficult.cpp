@@ -1,5 +1,7 @@
 #include "Difficult.h"
-
+int minute2 = 8;
+int second2 = 0;
+bool result2 = true;
 node* CreateBoardLinkList(node* phead, int size)
 {
 	node* pcurr = phead;
@@ -105,7 +107,7 @@ void PlayerInputLinkList(node* phead, PlayerBoard& player, int size, int x, int 
 	node* pcurr = phead;
 	node* preve = pcurr;
 	node* ptemp = pcurr;
-	while (loop)
+	while (loop == true && result2 == true)
 	{
 		pcurr = seeknode(phead, index1, index2, size);
 		preve = seeknode(phead, previndex1, previndex2, size);
@@ -197,7 +199,11 @@ void PlayerInputLinkList(node* phead, PlayerBoard& player, int size, int x, int 
 						GoTo(70, 25);
 						if (!loop)
 						{
-							cout << "No valid pairs left";
+							GoTo(71, 8);
+							cout << "- No valid pairs left press any keys to";
+							GoTo(71, 9);
+							cout << " continue";
+							result2 = false;
 							_getch();
 						}
 					}
@@ -240,6 +246,38 @@ void DelteLinkListBoard(node* phead,int size)
 	delete phead;
 }
 
+void  Timer2(promise<int>&& promisetotaltime)
+{
+	while (result2)
+	{
+
+		if (minute2 == 0 && second2 == 0)
+		{
+			result2 = false;
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+			GoTo(84, 4);
+			cout << "Time over press any key";
+		}
+		else if (second2 == 0)
+		{
+			minute2--;
+			second2 = 60;
+		}
+		else
+		{
+			Sleep(1000);
+			second2--;
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+			GoTo(84, 4);
+			cout << "            ";
+			GoTo(84, 4);
+			cout << minute2 << " : " << second2;
+		}
+	}
+	int countime = minute2 * 60 + second2;
+	promisetotaltime.set_value(countime);
+}
+
 void Difficult(PlayerBoard& player, int size)
 {
 	node* phead = new node;
@@ -247,8 +285,17 @@ void Difficult(PlayerBoard& player, int size)
 	CreateBoardLinkList(phead, size);
 	AssignChar(phead, size);
 	DisPlayBoardLinkList(phead, size);
+	promise<int> totaltime;
+	future<int> final_totaltime = totaltime.get_future();
+	thread clock2(Timer2, move(totaltime));
 	DrawStatusBoard(player);
 	PlayerInputLinkList(phead, player, size, 2, 0, x1, y1, x2, y2);
+	result2 = false;
+	int timescore = final_totaltime.get();
+	player.score += timescore;
+	clock2.join();
 	DelteLinkListBoard(phead,size);
 	_getch();
+	system("cls");
+	cout << player.score;
 }
