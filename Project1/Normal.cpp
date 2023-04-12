@@ -230,7 +230,7 @@ void Normal(PlayerBoard &player,int size){
 	clock.join();
 	DeleteBoard(table, size);
 	player.achive1 = 1;
-	if (timescore >= 30) {
+	if (timescore >= 9 * 60 + 30) {
 		player.achive2 = 1;
 	}
 	_getch();

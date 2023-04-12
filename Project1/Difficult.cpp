@@ -297,6 +297,12 @@ void Difficult(PlayerBoard& player, int size)
 	player.score += timescore;
 	clock2.join();
 	DelteLinkListBoard(phead, size);
+	if (timescore >= 7 * 60 + 30) {
+		player.achive2 = 1;
+	}
+	if (player.achive1 == 1 && player.achive2 == 2) {
+		player.achive3 == 1;
+	}
 	_getch();
 	system("cls");
 }
