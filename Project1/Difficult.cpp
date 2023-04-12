@@ -78,10 +78,15 @@ void PlayerInputLinkList(node* phead, PlayerBoard& player, int size, int x, int 
 }
 
 void Difficult(PlayerBoard& player, int size)
-{
+{	
+	int mode;
 	node* phead = new node;
 	CreateBoardLinkList(phead, size);
 	AssignChar(phead, size);
 	DisPlayBoardLinkList(phead, size);
+	if (player.achive1 == 1 && player.achive2 == 1) {
+		player.achive3 = 1;
+	}
 	_getch();
+	MainMenu(player, mode, size);
 }

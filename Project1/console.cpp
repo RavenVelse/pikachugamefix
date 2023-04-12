@@ -161,8 +161,7 @@ void MainMenu(PlayerBoard& player,int& mode,int& size) {
 }
 // Print LeaderBoard menu
 void LeaderBoard(PlayerBoard& player, int& mode, int& size) {
-    player = { 2, "Tan","15/12/2021",9000,"123456789",1,1,1 };
-    SaveFileBi("player.bin",player);
+    /*SaveFileBi("player.bin",player);*/
     PlaySound(TEXT("background.wav"), NULL, SND_FILENAME | SND_ASYNC);
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
     ReadAndDraw("PlayerTitle.txt", 4, 30, 1);
@@ -350,7 +349,7 @@ void DifficultScreen(int& mode, int& size) {
     }
 }
 // Print the name screen 
-void Login(PlayerBoard  player, int num,Account *acc) {
+void Login(PlayerBoard  &player, int num,Account *acc) {
 
     int loop = true;
     while (loop) {
@@ -360,11 +359,12 @@ void Login(PlayerBoard  player, int num,Account *acc) {
         GoTo(50, 14);
         cout << "Your ig name: ";
         fgets(player.name, sizeof(player.name), stdin);
+        /*player.name[sizeof(player.name)] = "\0";*/
         GoTo(50, 15);
         cout << "Your Password: ";
         fgets(player.pass, sizeof(player.pass), stdin);
         for (int i = 0; i < num; i++) {
-            if (strcmp(player.name, acc[i].name) == 0 && strcmp(player.pass, acc[i].pass)) {
+            if (strcmp(player.name, acc[i].name) == 1 && strcmp(player.pass, acc[i].pass) == 1) {
                 GoTo(45, 18);
                 cout << "LOGIN SUCCESFULL!!";
                 loop = false;
@@ -377,6 +377,9 @@ void Login(PlayerBoard  player, int num,Account *acc) {
             }
         }
     }
+    GoTo(50, 12);
+    cout << "Date (dd/mm/yyyy): ";
+    fgets(player.date, sizeof(player.date), stdin);
 }
 // Print the name screen 
 void NameScreen(Account acc[MAXLB], PlayerBoard& player)
@@ -393,7 +396,7 @@ void NameScreen(Account acc[MAXLB], PlayerBoard& player)
     int x = 45;
     int y = 15;
     system("cls");
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11);
     MenuBox(x, y, 30, 2, 11, "LOGIN");
     MenuBox(x, y + 2, 30, 2, 11, "SIGN IN");
     for (int i = 1; i < 2; i++) {
@@ -471,23 +474,26 @@ void NameScreen(Account acc[MAXLB], PlayerBoard& player)
         {
             if (char(ch) == '0')
                 loop = false;
-        }
-        switch (kt) {
-        case 1:
-            Login(player, num,acc);
-            break;
-        case 2:
-            system("cls");
-            GoTo(50, 14);
-            cout << "Your ig name: ";
-            fgets(player.name, sizeof(player.name), stdin);
-            GoTo(50, 15);
-            cout << "Your Password: ";
-            fgets(player.pass, sizeof(player.pass), stdin);
-            break;
-        default:
-            break;
-        }
+        }       
+    }
+    switch (kt) {
+    case 1:
+        Login(player, num, acc);
+        break;
+    case 2:
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+        GoTo(50, 14);
+        cout << "Your ig name: ";
+        fgets(player.name, sizeof(player.name), stdin);
+        GoTo(50, 15);
+        cout << "Your Password: ";
+        fgets(player.pass, sizeof(player.pass), stdin);
+        GoTo(50, 16);
+        cout << "Date: ";
+        fgets(player.date, sizeof(player.date), stdin);
+        break;
+    default:
+        break;
     }
 }
 // Print the end game screen

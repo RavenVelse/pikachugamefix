@@ -288,7 +288,7 @@ void PrintBackground(char bg[][54], int x,int y) {
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 9; j++) {
             GoTo(x + j, y + i);
-            cout << bg[y +i][x +j];
+            cout << bg[y + i][x + j];
         }
     }
 }
@@ -303,7 +303,7 @@ void DrawStatusBoard(PlayerBoard player)
     cout << "- Player name: " << player.name;
     GoTo(71, 4);
     cout << "- Points: " << "    ";// xoa cho trung` neu nhu diem < 0
-    GoTo(81, 4);
+    GoTo(81, 5);
     cout << player.score;
     GoTo(71, 5);// dia chi thoi gian
     cout << "- Time left: ";
@@ -344,69 +344,6 @@ void DrawStatusBoard(PlayerBoard player)
         cout << "|";
     }
 }
-bool CheckLeapYear(char x) {
-    if ((x % 4 == 0 && x % 100 != 0) || x % 400 == 0) {
-        return true;
-    }
-    return false;
-}
-bool CheckDay(char* d,char *m, char *y) {
-
-    string day(d);
-    int d1 = stoi(day);
-    string month(m);
-    int m1 = stoi(month);
-    string year(y);
-    int y1 = stoi(year);
-    if (CheckLeapYear(y1)) {
-        switch (m1) {
-        case 1: case 3: case 5: case 7: case 8: case 10: case 12:
-            if (d1 < 32 && d1> 0) {
-                return true;
-            }
-            else return false;
-            break;
-        case 4: case 6: case 9 : case 11:
-            if (d1 < 31 && d1 >0) {
-                return true;
-            }
-            else return false;
-            break;
-        case 2:
-            if (d1 < 30 && d1 > 0) {
-                return true;
-            }
-            else return false;
-        default:
-            return false;
-        }
-    }
-    else if (!CheckLeapYear(y1)) {
-        switch (m1) {
-        case 1: case 3: case 5: case 7: case 8: case 10: case 12:
-            if (d1 < 32 && d1> 0) {
-                return true;
-            }
-            else return false;
-            break;
-        case 4: case 6: case 9: case 11:
-            if (d1 < 31 && d1 >0) {
-                return true;
-            }
-            else return false;
-            break;
-        case 2:
-            if (d1 < 29 && d1 > 0) {
-                return true;
-            }
-            else return false;
-        default:
-            return false;
-        }
-    }
-    return false;
-}
-
 void DeleteBoard(board** table,int size)
 {
     for (int i = 0; i < size; i++)

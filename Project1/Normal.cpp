@@ -208,7 +208,7 @@ void  Timer(promise<int> && promisetotaltime)
 	promisetotaltime.set_value(countime);
 }
 
-void Normal(PlayerBoard p,int size){	
+void Normal(PlayerBoard &player,int size){	
 	ReadBackground("bg6x6.txt",bg);
 	board** table = new board * [size];
 	DisplayBoard(table, size);
@@ -216,13 +216,21 @@ void Normal(PlayerBoard p,int size){
 	promise<int> totaltime;
 	future<int> final_totaltime = totaltime.get_future();
 	thread clock(Timer, move(totaltime));
-	DrawStatusBoard(p);
-	PlayerInput(table, size, 2, 0, x1, y1, x2, y2, p);
+	DrawStatusBoard(player);
+	PlayerInput(table, size, 2, 0, x1, y1, x2, y2, player);
 	result = false;
 	int timescore = final_totaltime.get();
-	p.score += timescore;
+	player.score += timescore;
 	clock.join();
 	DeleteBoard(table, size);
 	system("cls");
-	cout << p.score;
+	cout << player.score;
+	player.achive1 = 1;
+	if (timescore <= 30) {
+		player.achive2 = 1;
+	}
+	int mode;
+	_getch();
+	SaveFileBi("player.bin", player);
+	MainMenu(player, mode, size);
 }
