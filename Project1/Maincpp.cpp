@@ -15,7 +15,8 @@ int main()
     PlayerBoard player;
     PlaySound(TEXT("background.wav"), NULL, SND_FILENAME | SND_ASYNC);
     while (true)
-    {
+    {   
+        system("cls");
         MainMenu(player, mode, size);
         if (mode == 1)
         {

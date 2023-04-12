@@ -235,5 +235,4 @@ void Normal(PlayerBoard &player,int size){
 		player.achive2 = 1;
 	}
 	_getch();
-	SaveFileBi("player.bin", player);
 }

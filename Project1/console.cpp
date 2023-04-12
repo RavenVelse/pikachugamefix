@@ -161,7 +161,6 @@ void MainMenu(PlayerBoard& player,int& mode,int& size) {
 }
 // Print LeaderBoard menu
 void LeaderBoard(PlayerBoard& player, int& mode, int& size) {
-    /*SaveFileBi("player.bin",player);*/
     PlaySound(TEXT("background.wav"), NULL, SND_FILENAME | SND_ASYNC);
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
     ReadAndDraw("PlayerTitle.txt", 4, 30, 1);
@@ -408,7 +407,7 @@ void NameScreen(Account acc[MAXLB], PlayerBoard& player)
     int xp = x, yp = y;
     int xcu = xp, ycu = yp;
     bool loop = true;
-    int kt = 1;
+    int kt = 0;
     while (loop) {
         string nd;
         switch (ycu)
@@ -502,17 +501,15 @@ void GameOver(PlayerBoard player)
     SaveFileBi("player.bin", player);
     // Print the winning screen
    /* GoTo()*/
-    ReadAndDraw("StageCompleted.txt", 5, 30, 12);
+    ReadAndDraw("StageCompleted.txt", 5, 15, 8);
     PlaySound(TEXT("win.wav"), NULL, SND_FILENAME | SND_ASYNC);
-    Beep(500, 200);
-    Beep(678, 400);
-    Beep(1268, 200);
-    Beep(1105, 1000);
-    Beep(1397, 200);
-    Beep(1397, 200);
-    Beep(1397, 200);
-    Beep(1576, 1000);
-    GoTo(45, 20);
-    cout << "Press any key !!!";
+    GoTo(55, 15);
+    cout << "Player: ";
+    cout << player.name;
+    GoTo(55, 16);
+    cout << "Score: ";
+    cout << player.score;
+    GoTo(47, 24);
+    cout << "Press any key to continue!!!";
     _getch();
 }

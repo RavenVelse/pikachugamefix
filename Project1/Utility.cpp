@@ -177,7 +177,7 @@ void ReadBiandPrint(string filename) {
             swap(player[i].achive3, player[maxID].achive3);
         }
     }
-        for (int i = 0; i < num && i < 10; i++) {
+    for (int i = 0; i < num && i < 10; i++) {
         if(i == 0) {
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);
         }if (i == 1) {
