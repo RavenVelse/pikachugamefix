@@ -226,7 +226,7 @@ void Normal(PlayerBoard &player,int size){
 	system("cls");
 	cout << player.score;
 	player.achive1 = 1;
-	if (timescore <= 30) {
+	if (timescore >= 30) {
 		player.achive2 = 1;
 	}
 	int mode;
