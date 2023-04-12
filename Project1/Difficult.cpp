@@ -281,6 +281,7 @@ void  Timer2(promise<int>&& promisetotaltime)
 
 void Difficult(PlayerBoard& player, int size)
 {
+	result2 = true;
 	node* phead = new node;
 	int x1 = 0, y1 = 0, x2 = 0, y2 = 0;
 	CreateBoardLinkList(phead, size);
