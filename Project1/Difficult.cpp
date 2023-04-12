@@ -84,9 +84,6 @@ void Difficult(PlayerBoard& player, int size)
 	CreateBoardLinkList(phead, size);
 	AssignChar(phead, size);
 	DisPlayBoardLinkList(phead, size);
-	if (player.achive1 == 1 && player.achive2 == 1) {
-		player.achive3 = 1;
-	}
 	_getch();
 	MainMenu(player, mode, size);
 }
