@@ -21,13 +21,13 @@ int main()
         if (mode == 1)
         {
             Normal(player, size);
+            GameOver(player);
         }
         else if (mode == 2)
         {
             Difficult(player, size); 
+            GameOver(player);
         }
-        GameOver(player);
-
     }
 
 }
