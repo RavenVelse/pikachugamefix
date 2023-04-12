@@ -152,6 +152,7 @@ void MainMenu(PlayerBoard& player,int& mode,int& size) {
             break;
         case 2:
             LeaderBoard(player,mode,size);
+            mode = 0;
             break;
         default:
             break;
