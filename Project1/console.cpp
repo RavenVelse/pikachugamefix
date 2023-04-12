@@ -359,7 +359,6 @@ void Login(PlayerBoard  &player, int num,Account *acc) {
         GoTo(50, 14);
         cout << "Your ig name: ";
         fgets(player.name, sizeof(player.name), stdin);
-        /*player.name[sizeof(player.name)] = "\0";*/
         GoTo(50, 15);
         cout << "Your Password: ";
         fgets(player.pass, sizeof(player.pass), stdin);

@@ -165,7 +165,7 @@ void ReadBiandPrint(string filename) {
     for (int i = 0; i < num; i++) {
         int maxID = i;
         for (int j = i + 1; j < num; j++) {
-            if (player[j].score >= player[maxID].score) {
+            if (player[j].score > player[maxID].score) {
                 maxID = j;
             }
             swap(player[i].name, player[maxID].name);
