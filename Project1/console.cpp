@@ -366,13 +366,8 @@ void Login(PlayerBoard  &player, int num,Account *acc) {
                 GoTo(45, 18);
                 cout << "LOGIN SUCCESFULL!!";
                 loop = false;
+                system("pause");
                 break;
-                system("pause");
-            }
-            else {
-                GoTo(45, 18);
-                cout << "LOGIN FAILED!!";
-                system("pause");
             }
         }
     }
