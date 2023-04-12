@@ -1,6 +1,6 @@
 #include"Normal.h"
 char bg[30][54];
-int minute = 1;
+int minute = 10;
 int second = 0;
 bool result = true;
 void CreateBoard(board** table, int w, int h)
@@ -228,11 +228,10 @@ void Normal(PlayerBoard &player,int size){
 	player.score += timescore;
 	clock.join();
 	DeleteBoard(table, size);
-	system("cls");
-	cout << player.score;
 	player.achive1 = 1;
 	if (timescore >= 30) {
 		player.achive2 = 1;
 	}
 	_getch();
+	system("cls");
 }
