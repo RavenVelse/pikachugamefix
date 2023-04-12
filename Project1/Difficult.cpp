@@ -296,8 +296,6 @@ void Difficult(PlayerBoard& player, int size)
 	player.score += timescore;
 	clock2.join();
 	DelteLinkListBoard(phead, size);
-	SaveFileBi("player.bin", player);
 	_getch();
 	system("cls");
-	cout << player.score;
 }

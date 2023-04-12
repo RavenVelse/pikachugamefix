@@ -12,11 +12,12 @@ int main()
     int mode = 0;
     int size = 0;
     SetUpWindow(200, 30);
-    PlayerBoard player;
-    PlaySound(TEXT("background.wav"), NULL, SND_FILENAME | SND_ASYNC);
+
     while (true)
     {   
         system("cls");
+        PlayerBoard player;
+        PlaySound(TEXT("background.wav"), NULL, SND_FILENAME | SND_ASYNC);
         MainMenu(player, mode, size);
         if (mode == 1)
         {
