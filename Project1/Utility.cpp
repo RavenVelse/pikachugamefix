@@ -298,20 +298,18 @@ void DrawStatusBoard(PlayerBoard player)
     GoTo(84, 1);
     cout << "STATUS BOARD";
     GoTo(71, 2);
-    cout << "- Date: " << player.date;
-    GoTo(71, 3);
     cout << "- Player name: " << player.name;
-    GoTo(71, 4);
+    GoTo(71, 3);
     cout << "- Points: " << "    ";// xoa cho trung` neu nhu diem < 0
-    GoTo(81, 5);
+    GoTo(81, 3);
     cout << player.score;
-    GoTo(71, 5);// dia chi thoi gian
+    GoTo(71, 4);// dia chi thoi gian
     cout << "- Time left: ";
-    GoTo(71, 6);
+    GoTo(71, 5);
     cout << "- Char match: ";
-    GoTo(71, 7);
+    GoTo(71, 6);
     cout << "- Matching style: ";
-    GoTo(71, 8);
+    GoTo(71, 7);
     cout << "- Help: ";
     GoTo(80, 13);
     cout << "RULES AND KEYS CONTROL";
@@ -320,9 +318,9 @@ void DrawStatusBoard(PlayerBoard player)
     GoTo(71, 15);
     cout << "- Using help will cost you 200 points";
     GoTo(71, 16);
-    cout << "- For each minutes that you have left";
+    cout << "- For each seconde that you have left";
     GoTo(71, 17);
-    cout << "will give you minutes * 100 points";
+    cout << "will give you second * 1 points";
     GoTo(71, 18);
     cout << "- Press arrow keys to move, enter to ";
     GoTo(71, 19);
@@ -352,3 +350,32 @@ void DeleteBoard(board** table,int size)
     }
 }
 
+void DeleteLinkList(int x, int y, node* phead, int index1, int index2)
+{
+    while (phead != NULL)
+    {
+        if (phead->x == index1 && phead->y == index2)
+        {
+            phead->c = ' ';
+            phead->empty = true;
+            break;
+        }
+        phead = phead->next;
+    }
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+    int ytemp = y, xtemp = x;
+    for (int i = 0; i < 2; i++)
+    {
+        GoTo(x, ytemp);
+        for (int j = 0; j < 8; j++)
+        {
+            cout << " ";
+        }
+        ytemp += 4;
+    }
+    for (int i = 1; i < 4; i++)
+    {
+        GoTo(x, y + i);
+        cout << "         ";
+    }
+}

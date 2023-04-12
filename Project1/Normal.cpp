@@ -81,6 +81,7 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 			Highlight(temp1, temp2, 8, 4, 16, 11, nd1); // to den o chon sai
 		}
 		Highlight(xcurr, ycurr, 8, 4, 15, 11, nd); // to trang o dang di chuyen
+		loop = ValidPairLeft(table, size, 'l');
 		int ch = _getch();
 		PlaySound(TEXT("move.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		if (ch == 224)
@@ -148,7 +149,11 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 						GoTo(70, 25);
 						if (!loop)
 						{
-							cout << "No valid pairs left";
+							GoTo(71, 8);
+							cout << "- No valid pairs left press any keys to";
+							GoTo(71, 9);
+							cout << " continue";
+							result = false;
 							_getch();
 						}
 					}
@@ -229,8 +234,6 @@ void Normal(PlayerBoard &player,int size){
 	if (timescore >= 30) {
 		player.achive2 = 1;
 	}
-	int mode;
 	_getch();
 	SaveFileBi("player.bin", player);
-	MainMenu(player, mode, size);
 }
