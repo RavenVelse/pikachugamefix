@@ -351,7 +351,7 @@ void DifficultScreen(int& mode, int& size) {
 // Print the name screen 
 void Login(PlayerBoard  &player, int num,Account *acc) {
 
-    int loop = true;
+    bool loop = true;
     while (loop) {
         SetColor(0, 0);
         system("cls");
@@ -367,6 +367,7 @@ void Login(PlayerBoard  &player, int num,Account *acc) {
                 GoTo(45, 18);
                 cout << "LOGIN SUCCESFULL!!";
                 loop = false;
+                break;
                 system("pause");
             }
             else {
@@ -496,38 +497,22 @@ void NameScreen(Account acc[MAXLB], PlayerBoard& player)
     }
 }
 // Print the end game screen
-void GameOver(bool result)
+void GameOver(PlayerBoard player)
 {   
-    if (result == true) {
-        // Print the winning screen
-        ReadAndDraw("StageCompleted.txt", 5, 30, 12);
-        PlaySound(TEXT("win.wav"), NULL, SND_FILENAME | SND_ASYNC);
-        Beep(500, 200);
-        Beep(678, 400);
-        Beep(1268, 200);
-        Beep(1105, 1000);
-        Beep(1397, 200);
-        Beep(1397, 200);
-        Beep(1397, 200);
-        Beep(1576, 1000);
-        GoTo(45, 20);
-        cout << "Press any key to continue!!!";
-        _getch();
-    }
-    else {
-        //print the losing screen
-        ReadAndDraw("GameOver.txt", 6, 45, 12);
-        PlaySound(TEXT("lose.wav"), NULL, SND_FILENAME | SND_ASYNC);
-        Beep(1568, 200);
-        Beep(1568, 200);
-        Beep(1568, 200);
-        Beep(1245, 1000);
-        Beep(1397, 200);
-        Beep(1397, 200);
-        Beep(1397, 200);
-        Beep(1175, 1000);
-        GoTo(35, 20);
-        cout << "Maybe you will get luck next time to win this CHILD's game :>>>>";
-        _getch();
-    }
+    SaveFileBi("player.bin", player);
+    // Print the winning screen
+   /* GoTo()*/
+    ReadAndDraw("StageCompleted.txt", 5, 30, 12);
+    PlaySound(TEXT("win.wav"), NULL, SND_FILENAME | SND_ASYNC);
+    Beep(500, 200);
+    Beep(678, 400);
+    Beep(1268, 200);
+    Beep(1105, 1000);
+    Beep(1397, 200);
+    Beep(1397, 200);
+    Beep(1397, 200);
+    Beep(1576, 1000);
+    GoTo(45, 20);
+    cout << "Press any key !!!";
+    _getch();
 }

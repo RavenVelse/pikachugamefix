@@ -14,13 +14,18 @@ int main()
     SetUpWindow(200, 30);
     PlayerBoard player;
     PlaySound(TEXT("background.wav"), NULL, SND_FILENAME | SND_ASYNC);
-    MainMenu(player,mode,size);
-    if (mode == 1)
+    while (true)
     {
-        Normal(player, size);
+        MainMenu(player, mode, size);
+        if (mode == 1)
+        {
+            Normal(player, size);
+        }
+        else if (mode == 2)
+        {
+            Difficult(player, size);
+        }
+        GameOver(player);
     }
-    else if (mode == 2)
-    {
-        Difficult(player, size);
-    }
+
 }

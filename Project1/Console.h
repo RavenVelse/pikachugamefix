@@ -21,3 +21,4 @@ void LeaderBoard(PlayerBoard& player, int& mode, int& size);
 void MainMenu(PlayerBoard& player, int& mode,int& size);
 void DifficultScreen(int& mode, int& size);
 void NameScreen(Account acc[MAXLB], PlayerBoard& player);
+void GameOver(PlayerBoard player);
