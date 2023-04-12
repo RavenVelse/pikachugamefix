@@ -183,7 +183,6 @@ void LeaderBoard(PlayerBoard& player, int& mode, int& size) {
     cout << "Press any key to continue!";
     _getch();
     system("cls");
-    MainMenu(player, mode, size);
 }
 // Print Tutorial screen 
 void TutorialMenu() {

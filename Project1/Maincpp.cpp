@@ -25,7 +25,7 @@ int main()
         }
         else if (mode == 2)
         {
-            Difficult(player, size);
+            Difficult(player, size); 
         }
         GameOver(player);
     }
