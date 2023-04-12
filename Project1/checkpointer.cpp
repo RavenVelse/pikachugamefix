@@ -216,7 +216,7 @@ bool CheckPointer(board** table, int x1, int y1, int x2, int y2, int size)
 		GoTo(85, 5);
 		cout << table[x1][y1].c;
 		GoTo(89, 6);
-		cout << " I match";
+		cout << "I match";
 		return true;
 	}
 	if (LCheck(table, x1, y1, x2, y2)) 
