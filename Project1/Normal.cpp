@@ -214,6 +214,7 @@ void  Timer(promise<int> && promisetotaltime)
 }
 
 void Normal(PlayerBoard &player,int size){	
+	result = true;
 	ReadBackground("bg6x6.txt",bg);
 	board** table = new board * [size];
 	DisplayBoard(table, size);

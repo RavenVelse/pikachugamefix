@@ -12,7 +12,6 @@ int main()
     int mode = 0;
     int size = 0;
     SetUpWindow(200, 30);
-
     while (true)
     {   
         system("cls");
@@ -28,6 +27,7 @@ int main()
             Difficult(player, size);
         }
         GameOver(player);
+
     }
 
 }
