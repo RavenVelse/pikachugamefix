@@ -154,7 +154,6 @@ void PlayerInput(board** table, int size, int x, int y, int& a1, int& a2, int& b
 							GoTo(71, 9);
 							cout << " continue";
 							result = false;
-							_getch();
 						}
 					}
 				}
@@ -188,7 +187,7 @@ void  Timer(promise<int> && promisetotaltime)
 
 		if (minute == 0 && second == 0)
 		{
-			result = false;
+			result = false; // stop timer funcion and player intput
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
 			GoTo(84, 4);
 			cout << "Time over press any key";

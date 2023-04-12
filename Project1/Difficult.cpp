@@ -27,13 +27,13 @@ void LeftSliding(node* phead, int x, int y, int size)
 		{
 			node* p1 = seeknode(phead, x, i, size);
 			node* p2 = seeknode(phead, x, i + 1, size);
-			if (p1->empty == true && p2->empty == false)
+			if (p1->empty == true && p2->empty == false) // if an emty cell has a not empty cell on it's right swap 2 cells
 			{
 				p1->c = p2->c;
 				p1->empty = false;
 				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11);
-				DrawBox(i * 9 + 2, x * 5, p1->c);
-				DeleteLinkList(((i + 1) * 9) + 1, x * 5, phead, x, i + 1);
+				DrawBox(i * 9 + 2, x * 5, p1->c);// print the cell after the swap
+				DeleteLinkList(((i + 1) * 9) + 1, x * 5, phead, x, i + 1); // delete cell after the swap
 			}
 		}
 		check = false;
@@ -57,10 +57,10 @@ void AssignChar(node* phead, int size)
 	{
 		node* temp = phead;
 		int count = 2;
-		char c = 65 + rand() % 26;
+		char c = 65 + rand() % 26; // random char from "A" to "Z"
 		while (count != 0)
 		{
-			int x = rand() % size;
+			int x = rand() % size; //find 2 random cell to put the char in
 			int y = rand() % size;
 			temp = phead;
 			for (int i = 0; i < size * size; i++)
@@ -86,7 +86,7 @@ void DisPlayBoardLinkList(node* phead, int size)
 		x = 2;
 		for (int j = 0; j < size; j++)
 		{
-			DrawBox(x, y, phead->c);
+			DrawBox(x, y, phead->c); // draw board
 			phead = phead->next;
 			x += 9;
 		}
@@ -173,7 +173,7 @@ void PlayerInputLinkList(node* phead, PlayerBoard& player, int size, int x, int 
 		if (ch == 13)
 		{
 			timesenter++;
-			if (timesenter == 1)
+			if (timesenter == 1)// save the cordinate of the first enter
 			{
 				a1 = index1;
 				a2 = index2;
@@ -205,7 +205,7 @@ void PlayerInputLinkList(node* phead, PlayerBoard& player, int size, int x, int 
 							GoTo(71, 9);
 							cout << " continue";
 							result2 = false;
-							_getch();
+							//_getch();
 						}
 					}
 				}
@@ -214,7 +214,7 @@ void PlayerInputLinkList(node* phead, PlayerBoard& player, int size, int x, int 
 			}
 
 		}
-		else if (char(ch) == 'h')
+		else if (char(ch) == 'h')// press h for move suggestion
 		{
 			player.score -= 200;
 			DrawStatusBoard(player);
@@ -254,7 +254,7 @@ void  Timer2(promise<int>&& promisetotaltime)
 
 		if (minute2 == 0 && second2 == 0)
 		{
-			result2 = false;
+			result2 = false;// stop the timer and playerinput
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
 			GoTo(84, 4);
 			cout << "Time over press any key";
@@ -269,7 +269,7 @@ void  Timer2(promise<int>&& promisetotaltime)
 			Sleep(1000);
 			second2--;
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
-			GoTo(84, 4);
+			GoTo(84, 4);//print the remaining time in status board
 			cout << "            ";
 			GoTo(84, 4);
 			cout << minute2 << " : " << second2;
